@@ -1,1 +1,10 @@
 <p class="topbar__legend">Topbar works!</p>
+<p class="topbar__legend">You selected: {{ menuItemsList[0] }}</p>
+
+<br />
+<ul>
+  <li class="topbar__menu--item">{{ menuItemsList[0] }}</li>
+</ul>
+<br />
+<button (click)="shuffleMenu()">Resort list</button>
+<p class="topbar__legend">{{ greetingFromUser }}</p>

@@ -1,0 +1,16 @@
+.card {
+  &__container {
+    border: 2px solid salmon;
+    background-color: dodgerblue;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+  }
+  &__legend {
+    font-size: 16px;
+    color: firebrick;
+  }
+}

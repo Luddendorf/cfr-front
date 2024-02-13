@@ -1,0 +1,10 @@
+.footer {
+  &__container {
+    border: 3px solid brown;
+    margin: 20px 0 0 0;
+    padding: 20px;
+  }
+  &__text {
+    color: rgb(181, 0, 0);
+  }
+}
