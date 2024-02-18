@@ -1,0 +1,24 @@
+<div class="square__container">
+  <!-- content projection - selector by attribute -->
+  <ng-content select="[header-h4]"></ng-content>
+
+  <p class="square__legend" [ngClass]="{square__blue: legendColor == 'Blue',
+                                        square__green: legendColor == 'Green',
+                                        square__yellow: legendColor == 'Yellow'}">Melissa</p>
+  <p class="square__legend" [ngClass]="colorOfText">Vanilla</p>
+  <p class="square__legend">Chocolate</p>
+  <p class="square__legend">Ice Tea</p>
+
+  <button (click)="setTextColor('Blue')">Blue</button>
+  <button (click)="setTextColor('Green')">Green</button>
+  <button (click)="setTextColor('Yellow')">Yellow</button>
+
+  <div class="square__square" [ngStyle]="{'width': squareWidth + 'px', 'height': squareHeight + 'px' }"></div>
+  <input type="text" placeholder="Width" (keyup)="setSquareWidth($event)"/>
+  <input type="text" placeholder="Height" (keyup)="setSquareHeight($event)"/>
+
+  <div class="circle" #myCircle>
+    <!-- content projection - selector by class name -->
+    <ng-content select=".my-round-class"></ng-content>
+  </div>
+</div>
