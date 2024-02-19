@@ -5,11 +5,18 @@ import { TopbarModule } from './topbar/topbar.module';
 import { FooterModule } from './footer/footer.module';
 import { FooterService } from './footer/footer.service';
 import { CardsModule } from './cards/cards.module';
+import { RectangleModule } from './rectangle/rectangle.module';
 
 @Component({
-  selector: 'app-root',
+  selector: 'cfr-root',
   standalone: true,
-  imports: [ RouterOutlet, FooterModule, TopbarModule, CardsModule ],
+  imports: [
+    RouterOutlet,
+    FooterModule,
+    TopbarModule,
+    CardsModule,
+    RectangleModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

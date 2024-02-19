@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './card/card.component';
 import { CardsService } from './cards.service';
 import { HolderComponent } from './holder/holder.component';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -11,7 +12,7 @@ import { HolderComponent } from './holder/holder.component';
   declarations: [CardComponent, HolderComponent],
   providers: [CardsService],
   imports: [
-    CommonModule, HttpClientModule
+    CommonModule, HttpClientModule, RouterLink
   ],
   exports: [HolderComponent]
 })
