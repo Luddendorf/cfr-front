@@ -17,7 +17,7 @@ export class SquareComponent implements AfterViewInit {
   myCircle: ElementRef;
 
   ngAfterViewInit(): void {
-    console.log(this.myCircle.nativeElement.classList);
+    // console.log(this.myCircle.nativeElement.classList);
     this.myCircle.nativeElement.classList.add('circle__green');
   }
 

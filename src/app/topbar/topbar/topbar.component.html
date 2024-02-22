@@ -18,5 +18,19 @@
   <ul>
     <li><a routerLink="/rect">Go To Rectangle</a></li>
     <li><a routerLink="/posts">Posts List</a></li>
+    <li><a (click)="goToTestimonials()" class="topbar__link">Testimonials</a></li>
+      <!-- (click)="goToTestimonials()"  -->
+      
+      
   </ul>
 </nav>
+
+<form (onsubmit)="sendPost($event)">
+  <label for="postTitle">Title</label>
+  <input name="postTitle" type="text" placeholder="Title" #titleInput/>
+
+  <label for="postBody">Body</label>
+  <input name="postBody" type="text" placeholder="Body" #bodyInput/>
+
+  <button (click)="sendPost($event)">Send Post</button>
+</form>

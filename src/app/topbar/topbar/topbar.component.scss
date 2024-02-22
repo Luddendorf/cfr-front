@@ -9,4 +9,9 @@
       color: blue;
     }
   }
+
+  &__link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }

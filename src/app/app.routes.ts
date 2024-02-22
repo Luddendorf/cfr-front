@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { TopbarComponent } from './topbar/topbar/topbar.component';
 
 export const routes: Routes = [
-  { path: '', component: AppComponent },
-  // { path: '',   redirectTo: 'home', pathMatch: 'full' }
-  // { path: 'home', component: AppComponent },
-  { path: 'topbar', component: TopbarComponent },
+  // { path: '', component: AppComponent },
+  { path: '',   redirectTo: 'topbar', pathMatch: 'full' },
   { path: 'posts', component: HolderComponent },
   { path: 'rect', component: RectangleComponent },
+  { path: 'testimonials', 
+    loadChildren: () => import('./testimonials/testimonials.module')
+      .then(m => m.TestimonialsModule) },
+  { path: 'topbar', component: TopbarComponent },
   { path: '**', component: FooterComponent }
 ];
