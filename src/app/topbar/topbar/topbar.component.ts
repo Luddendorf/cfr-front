@@ -2,6 +2,7 @@ import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Router } from '@angular/router';
 import { TopbarService } from '../topbar.service';
+import { Post } from '../../cards/interfaces/post.interface';
 
 @Component({
   selector: 'cfr-topbar',
@@ -11,6 +12,7 @@ import { TopbarService } from '../topbar.service';
 export class TopbarComponent {
   menuItemsList: string[] = ['Jokes', 'Events', 'Meetings', 'Parties',
     'Find friends'];
+  updatedPost: Post = {userId: 0, id: 0, title: '', body: ''};
   
   @Input() greetingFromUser: string = 'Hello from the bottom';
 
@@ -33,7 +35,7 @@ export class TopbarComponent {
   }
 
   goToTestimonials(): void {
-    this.router.navigate(['/testimonials', '16']);
+    this.router.navigate(['/testimonials', '16', this.updatedPost]);
   }
 
   sendPost(event: Event): void {
@@ -41,7 +43,9 @@ export class TopbarComponent {
     let title: string = this.titleInput.nativeElement.value;
     let body: string = this.bodyInput.nativeElement.value;
     
-    this.topbarService.updateLastPost$({userId: 0, id: 0, title: title,
-      body: body});
+    this.updatedPost = { userId: this.updatedPost.userId++,
+      id: this.updatedPost.id++, title: title, body: body };
+    // this.topbarService.updateLastPost$({userId: 0, id: 0, title: title,
+    //   body: body});
   }
 }

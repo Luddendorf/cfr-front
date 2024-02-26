@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Post } from '../cards/interfaces/post.interface';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TopbarService {
   lastId: number = 0;
   lastPost$: BehaviorSubject<Post> = new BehaviorSubject({

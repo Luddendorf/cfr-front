@@ -17,13 +17,11 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
               private topbarService: TopbarService) {}
 
   ngOnInit(): void {
-    // console.log('Testimonials component started');
     this.testimonialId = this.route.snapshot.paramMap.get('testimonialId');
-    this.topbarServiceSub = this.topbarService.getLastPost$().subscribe(
-        newPost => {
-          this.updatedPost = newPost;
-          console.log(this.updatedPost)
-      });
+    this.topbarServiceSub = this.route.params.subscribe(params => {
+      this.updatedPost = {userId: params['userId'], id: params['id'],
+        title: params['title'], body: params['body'] };
+    });
   }
 
   ngOnDestroy(): void {

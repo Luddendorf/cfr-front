@@ -6,6 +6,8 @@ import { FooterModule } from './footer/footer.module';
 import { FooterService } from './footer/footer.service';
 import { CardsModule } from './cards/cards.module';
 import { RectangleModule } from './rectangle/rectangle.module';
+import { SharedModule } from './common/shared.module';
+import { SignUpModule } from './sign-up/sign-up.module';
 
 @Component({
   selector: 'cfr-root',
@@ -15,7 +17,9 @@ import { RectangleModule } from './rectangle/rectangle.module';
     FooterModule,
     TopbarModule,
     CardsModule,
-    RectangleModule
+    RectangleModule,
+    SharedModule,
+    SignUpModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -30,9 +34,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     if (environment.production == true) {
-      console.log('Production!');
+      // console.log('Production!');
     } else {
-      console.log('Development!');
+      // console.log('Development!');
     }
   }
 

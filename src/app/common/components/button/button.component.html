@@ -1,0 +1,16 @@
+<div class="button__container" [ngSwitch]="buttonType">
+  <button *ngSwitchCase="'red'"
+          class="button__first">{{ buttonText }}</button>
+  <button *ngSwitchCase="'stripes'"
+          class="button__second">{{ buttonText }}</button>
+  <button *ngSwitchCase="'glow'"
+          class="button__third">{{ buttonText }}</button>
+  <button *ngSwitchCase="'slide'"
+          class="button__fourth">{{ buttonText }}</button>
+  <button *ngSwitchCase="'deploy'"
+          class="button__fifth">{{ buttonText }}</button>
+  <button *ngSwitchCase="'basket'"
+          class="button__sixth">{{ buttonText }}</button>
+  <button *ngSwitchDefault
+          class="button__fourth">{{ buttonText }}</button>
+</div>
