@@ -30,8 +30,30 @@
         Password must have 1 letter, 1 digit and 1 symbol and be between 6 and 16 symbols long.
       </span>
     </span>
+    <label for="additional-guests">Do you have additional guests?</label>
+    <input id="additional-guests" type="checkbox" formControlName="hasAdditionalGuests"/>
+    <!-- FormArray with guests -->
+    <ng-container formArrayName="guests">
+      <ng-container *ngFor="let guest of guests.controls; let i = index">
+          <div class="lesson-form-row" [formGroupName]="i">
+            <input type="text" formControlName="firstName"
+              [placeholder]="'First name of guest #' + (i + 1)"/>
+            
+            <input type="text" formControlName="lastName"
+              [placeholder]="'Last name of guest #' + (i + 1)"/>
+
+          </div>
+      </ng-container>
+  </ng-container>
+
   </div>
   </form>
+  <div *ngIf="hasGuests">
+    <cfr-button [buttonType]="'slide'" [buttonText]="'Add Guest'"
+    (click)="addGuest()"></cfr-button>
+    <cfr-button [buttonType]="'slide'" [buttonText]="'Remove Guest'"
+    (click)="removeGuest()"></cfr-button>
+  </div>
   <!-- <p>You entered: {{ signUpForm.name.value }}</p> -->
   <cfr-button [buttonType]="'slide'" [buttonText]="'Sign Up'"
     (click)="onSignUpSubmit()"></cfr-button>

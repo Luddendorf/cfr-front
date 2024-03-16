@@ -16,7 +16,6 @@
   <h4 header-h4>HELLO FROM PARENT</h4>
   <h4 class="my-round-class">Select by class</h4>
 </cfr-square>
-
 <nav>
   <ul>
     <li><a routerLink="/rect">Go To Rectangle</a></li>
@@ -37,3 +36,8 @@
 
   <button (click)="sendPost($event)">Send Post</button>
 </form>
+
+<button (click)="createStar('yellow')">Create yellow star</button>
+<button (click)="createStar('red')">Create red star</button>
+<button (click)="removeStar()">Remove star</button>
+<template #starContainer></template>
