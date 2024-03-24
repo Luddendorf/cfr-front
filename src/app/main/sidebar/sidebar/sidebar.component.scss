@@ -1,0 +1,16 @@
+$orange-primary: #FA9F42;
+
+.sidebar {
+  &__container {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    background-color: $orange-primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &__stab {
+    height: 1400px;
+  }
+}

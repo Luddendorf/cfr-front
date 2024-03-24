@@ -1,0 +1,13 @@
+$orange-lighter: #FBB874;
+
+.home {
+  &__container {
+    width: 100%;
+    display: flex;
+    background-color: $orange-lighter;
+  }
+  &__stab {
+    height: 1000px;
+    width: 100%;
+  }
+}

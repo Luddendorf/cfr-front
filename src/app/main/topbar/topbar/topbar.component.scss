@@ -1,0 +1,19 @@
+$blue-primary: #222E50;
+$blue-lighter: #314374;
+$blue-light: #4861A9;
+$blue-darker: #13192C;
+$blue-dark: #0B0F1A;
+$orange-primary: #FA9F42;
+$orange-lighter: #FBB874;
+$orange-light: #FDD1A5;
+$orange-darker: #F98610;
+$orange-dark: #D06C06;
+
+.topbar {
+  &__container {
+    height: 100px;
+    display: flex;
+    width: 100%;
+    background-color: $blue-lighter;
+  }
+}
