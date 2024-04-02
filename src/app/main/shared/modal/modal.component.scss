@@ -26,6 +26,9 @@ $box-shadow: rgba(0, 0, 0, 0.32) 0px 8px 40px 0px;
     align-items: center;
     background-color: $color-black-transparent;
   }
+  &__holder {
+
+  }
   &__box {
     display: flex;
     flex-direction: column;
@@ -34,6 +37,7 @@ $box-shadow: rgba(0, 0, 0, 0.32) 0px 8px 40px 0px;
     background-color: $color-white-light;
     width: 600px;
     height: 350px;
+    animation: entranceIn 0.5s ease-out;
   }
 
   &__header {
@@ -56,57 +60,70 @@ $box-shadow: rgba(0, 0, 0, 0.32) 0px 8px 40px 0px;
     box-shadow: none;
     border: none;
     box-sizing: border-box;
+    padding: 0;
     cursor: pointer;
+    border: 1px solid red;
     &:hover,
     &:focus {
-      .modal__close--inner {
-        &:before {
-          transform: translate(-50%, 4px) rotate(45deg);
-          top: 25%;
-        }
-        &:after {
-          transform: translate(-50%, -8px) rotate(-45deg);
-          top: 76%;
-        }
-      }
       .modal__close--label {
-        opacity: 1;
-      }
-    }
-    &--inner {
-      display: block;
-      position: relative;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      &:before {
-        content: "";
-        position: absolute;
-        height: 2px;
-        width: 24px;
-        background-color: $color-black;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        transition: ease-out .2s all;
-      }
-      &:after {
-        content: "";
-        position: absolute;
-        height: 2px;
-        width: 24px;
-        background-color: $color-black;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) rotate(45deg);
-        transition: ease-out .2s all;
+          animation: rubberband 0.5s alternate ease-out;
       }
     }
     &--label {
+      display: block;
       color: $color-black;
-      height: 16px;
-      opacity: 0;
-      transition: all .2s ease-out;
+      height: 24px;
+      width: 24px;
     }
+    &--icon {
+      display: block;
+      background-image: url('../../../../assets/img/cross.svg');
+      background-size: cover;
+      width: 24px;
+      height: 24px;
+    }
+  }
+  &__hide {
+    display: none;
+  }
+}
+
+@keyframes rubberband {
+  0%{
+      transform: scaleX(1);
+  }
+  40%{
+      transform: scaleX(1.12) scaleY(0.75);
+  }
+  55%{
+      transform: scaleX(0.85) scaleY(1);
+  }
+  65%{
+      transform: scaleX(1.09) scaleY(0.85);
+  }
+  75%{
+      transform: scaleX(0.9)  scaleY(1);
+  }
+  90%{
+      transform: scaleX(1.05) scaleY(0.95);
+  }
+  100%{
+      transform: scaleX(1) scaleY(1);
+  }
+}
+
+
+@keyframes entranceIn {
+  0%{
+      transform: scaleX(0.96);
+      opacity: 0;
+  }
+  50%{
+      transform: scaleX(0.98);
+      opacity: 0.5;
+  }
+  100%{
+      transform: scaleX(1);
+      opacity: 1;
   }
 }

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './topbar.component.scss'
 })
 export class TopbarComponent {
-
+  metaData = {
+    name: 'John',
+    surname: 'Travolta',
+    age: 33
+  };
 }

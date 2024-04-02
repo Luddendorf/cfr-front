@@ -6,6 +6,16 @@ import { Component, Input } from '@angular/core';
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
+  isShown: boolean = false;
+
   @Input()
   modalHeader = 'Modal title';
+
+  @Input()
+  modalData: any;
+
+  toggleModal(event: MouseEvent): void {
+    event.stopPropagation();
+    this.isShown = !this.isShown;
+  }
 }
