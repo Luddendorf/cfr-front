@@ -1,0 +1,11 @@
+$blue-darker: #13192C;
+$blue-light: #4861A9;
+$blue-white: #a7b6e4;
+
+.sidebar {
+  &__container {
+    width: 300px;
+    height: calc(100vh - 100px);
+    border-right: 1px solid $blue-white;
+  }
+}

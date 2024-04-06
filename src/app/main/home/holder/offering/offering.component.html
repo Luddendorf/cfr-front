@@ -1,0 +1,17 @@
+<div class="offering__container">
+  <div class="offering__header">
+    Last viewed goods
+  </div>
+  <div class="offering__main">
+    <ng-container *ngFor="let item of items; index as i">
+      <cfr-card [item]="item"></cfr-card>
+    </ng-container>
+  </div>
+  <div class="offering__button--wrapper">
+    <button class="offering__button" cfr-hover>
+      <span class="offering__button--legend">Show More</span>
+      <div class="offering__button--icon"></div>
+      <div class="offering__button--icon-hovered"></div>
+    </button>
+  </div>
+</div>

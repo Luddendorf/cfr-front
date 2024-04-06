@@ -1,0 +1,9 @@
+$orange-lighter: #FBB874;
+
+.slider {
+  &__container {
+    width: 100%;
+    height: 371px;
+    background-color: $orange-lighter;
+  }
+}

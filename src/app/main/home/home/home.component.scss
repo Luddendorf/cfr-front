@@ -1,13 +1,15 @@
 $orange-lighter: #FBB874;
+$white-lighter: #F8F8F8;
 
 .home {
   &__container {
     width: 100%;
     display: flex;
-    background-color: $orange-lighter;
+    background-color: $white-lighter;
   }
-  &__stab {
-    height: 1000px;
+  &__wrapper {
+    display: flex;
     width: 100%;
+    flex-direction: column;
   }
 }

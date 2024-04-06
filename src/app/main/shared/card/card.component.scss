@@ -1,0 +1,88 @@
+$white-lighter: #F8F8F8;
+$color-text-black: #221f1f;
+$red-primary: #f84147;
+$grey-primary: #a6a5a5;
+$grey-secondary: #797878;
+$orange-primary: #ff5c00;
+
+.card {
+  &__container {
+    width: 185px;
+    height: 335px;
+    border: 1px solid red;
+    background-color: $white-lighter;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+  }
+  &__wrapper {
+    width: 153px;
+    display: flex;
+    flex-direction: column;
+    // height: 283px;
+    border: 1px solid green;
+  }
+  &__image {
+    &--holder {
+      width: 153px;
+      height: 170px;
+    }
+  }
+  &__item-name {
+    color: $color-text-black;
+    font-family: 'FiraSans';
+    font-size: 14px;
+    text-decoration: none;
+    margin: 0 0 12px 0;
+    &:hover,
+    &:active {
+      color: $red-primary;
+      transition: all 0.3s;
+      text-decoration: underline;
+    }
+  }
+
+  &__price {
+    color: $color-text-black;
+    font-size: 24px;
+    font-family: 'Merriweather';
+    line-height: 34px;
+    &--currency {
+      color: $color-text-black;
+      font-size: 18px;
+      font-family: 'Merriweather';
+      line-height: 18px;
+      margin: 0 0 0 4px;
+    }
+
+    &--old {
+      color: $grey-primary;
+      font-family: 'Merriweather';
+      font-size: 14px;
+      line-height: 14px;
+      text-decoration: line-through;
+      &-currency {
+        margin: 0 0 0 4px;
+        color: $grey-primary;
+        font-family: 'Merriweather';
+        font-size: 14px;
+        line-height: 14px;
+      }
+    }
+  }
+  &__status {
+    color: $grey-secondary;
+    font-size: 12px;
+    line-height: 12px;
+    font-family: 'Merriweather';
+    margin: 4px 0 4px 0;
+  }
+  &__color {
+    &--orange {
+      color: $orange-primary;
+    }
+    &--red {
+      color: $red-primary;
+    }
+  }
+}

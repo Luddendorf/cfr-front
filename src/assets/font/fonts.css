@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "FiraSans";
+  src:
+    local("FiraSans"),
+    url("/assets/font/FiraSans/FiraSans-Regular.ttf");
+    format: "ttf";
+    font-weight: normal;
+}
+
+@font-face {
+  font-family: "FiraSansBold";
+  src:
+    local("FiraSansBold"),
+    url("/assets/font/FiraSans/FiraSans-Bold.ttf");
+    format: "ttf";
+    font-weight: bold;
+}
+
+@font-face {
+  font-family: "FiraSansLight";
+  src:
+    local("FiraSansLight"),
+    url("/assets/font/FiraSans/FiraSans-Light.ttf");
+    format: "ttf";
+    font-weight: lighter;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  src:
+    local("Merriweather"),
+    url("/assets/font/Merriweather/Merriweather-Regular.ttf");
+    format: "ttf";
+    font-weight: normal;
+}
+
+@font-face {
+  font-family: "MerriweatherBold";
+  src:
+    local("MerriweatherBold"),
+    url("/assets/font/Merriweather/Merriweather-Bold.ttf");
+    format: "ttf";
+    font-weight: bold;
+}
+
+@font-face {
+  font-family: "MerriweatherLight";
+  src:
+    local("MerriweatherLight"),
+    url("/assets/font/Merriweather/Merriweather-Light.ttf");
+    format: "ttf";
+    font-weight: lighter;
+}
