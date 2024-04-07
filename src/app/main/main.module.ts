@@ -4,15 +4,14 @@ import { TopbarModule } from './topbar/topbar.module';
 import { HomeModule } from './home/home.module';
 import { FooterModule } from './footer/footer.module';
 import { SidebarModule } from './sidebar/sidebar.module';
-//import { SharedModule } from './shared/shared.module';
-
-
+import { MainComponent } from './main/main.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MainComponent
+  ],
   imports: [
     CommonModule,
-    // SharedModule,
     SidebarModule,
     TopbarModule,
     HomeModule,

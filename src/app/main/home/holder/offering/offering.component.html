@@ -4,7 +4,10 @@
   </div>
   <div class="offering__main">
     <ng-container *ngFor="let item of items; index as i">
-      <cfr-card [item]="item"></cfr-card>
+      <div class="offering__card--wrapper">
+        <cfr-card [item]="item"></cfr-card>
+      </div>
+      
     </ng-container>
   </div>
   <div class="offering__button--wrapper">

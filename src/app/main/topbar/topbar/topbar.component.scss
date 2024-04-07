@@ -1,19 +1,25 @@
-$blue-primary: #222E50;
-$blue-lighter: #314374;
-$blue-light: #4861A9;
-$blue-white: #a7b6e4;
-$blue-darker: #13192C;
+$black-text: #221f1f;
+$black-transparent: rgba(0, 0, 0, 0.4);
 $blue-dark: #0B0F1A;
-
+$blue-darker: #13192C;
+$blue-light: #4861A9;
+$blue-lighter: #314374;
+$blue-primary: #222E50;
 $blue-secondary: #3e77aa;
-
-$orange-primary: #FA9F42;
-$orange-lighter: #FBB874;
-$orange-light: #FDD1A5;
-$orange-darker: #F98610;
+$blue-white: #a7b6e4;
+$grey-primary: #a6a5a5;
+$grey-secondary: #797878;
+$grey-tertiary: #e9e9e9;
+$orange-carrot: #ff5c00;
 $orange-dark: #D06C06;
-
-$color-text-black: #221f1f;
+$orange-darker: #F98610;
+$orange-light: #FDD1A5;
+$orange-lighter: #FBB874;
+$orange-lighter: #FBB874;
+$orange-primary: #FA9F42;
+$pink-primary: #ff7878;
+$red-primary: #f84147;
+$white-lighter: #F8F8F8;
 
 .topbar {
   &__container {

@@ -1,9 +1,10 @@
 <div class="card__container">
   <div class="card__wrapper">
-    <div class="card__image--holder">
-
+    <div class="card__favorite"></div>
+    <div class="card__image--holder" (click)="goToDetails()">
+      <img class="card__image" [src]="item.imageLink"/>
     </div>
-    <a href="" class="card__item-name">{{ item.itemName }}</a>
+    <div class="card__item-name" (click)="goToDetails()">{{ item.itemName }}</div>
     <div class="card__price--old">{{ item.priceOld | ukrCurrency : '1.0-0' }}
       <span class="card__price--old-currency">{{ item.currency }}</span>
     </div>
