@@ -1,7 +1,7 @@
 import { ItemStatus } from './item-status';
 
-export interface Item {
-  itemId: string;
+export interface Good {
+  id: string;
   itemName: string;
   priceOld?: number;
   price: number;

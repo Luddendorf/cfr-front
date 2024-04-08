@@ -2,16 +2,21 @@
   <div class="offering__header">
     Last viewed goods
   </div>
-  <div class="offering__main">
-    <ng-container *ngFor="let item of items; index as i">
-      <div class="offering__card--wrapper">
-        <cfr-card [item]="item"></cfr-card>
-      </div>
-      
-    </ng-container>
+
+  <div class="offering__window"
+       [ngClass]="{ 'offering__window--expanded' : isOpened === true }">
+    <div class="offering__main">
+      <ng-container *ngFor="let item of items; index as i">
+        <div class="offering__card--wrapper">
+          <cfr-card [item]="item"></cfr-card>
+        </div>
+      </ng-container>
+    </div>
   </div>
-  <div class="offering__button--wrapper">
-    <button class="offering__button" cfr-hover>
+
+  <div class="offering__button--wrapper"
+       [ngClass]="{ 'offering__button--hidden' : isOpened === true }">
+    <button class="offering__button" cfr-hover (click)="expandOffering()">
       <span class="offering__button--legend">Show More</span>
       <div class="offering__button--icon"></div>
       <div class="offering__button--icon-hovered"></div>

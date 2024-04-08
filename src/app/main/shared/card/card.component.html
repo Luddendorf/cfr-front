@@ -11,6 +11,16 @@
     <div class="card__price">{{ item.price | ukrCurrency : '1.0-0' }}
       <span class="card__price--currency">{{ item.currency }}</span>
     </div>
-    <div class="card__status">{{ item.itemStatus }}</div>
+    <div class="card__status">
+      <ng-container [ngSwitch]="item.itemStatus">
+        <span *ngSwitchCase="'runningOut'"
+              class="card__status--running-out">Закінчується</span>
+        <span *ngSwitchCase="'outOfStock'"
+              class="card__status--out-of-stock">Немає в наявності</span>
+        <span *ngSwitchCase="'inDelivery'"
+              class="card__status--in-delivery">В дорозі</span>
+        <span *ngSwitchDefault class="card__status--available"></span>
+      </ng-container>
+    </div>
   </div>
 </div>

@@ -18,13 +18,22 @@ $pink-primary: #ff7878;
     line-height: 28px;
     margin: 0 0 16px 0;
   }
-
+  &__window {
+    height: 351px;
+    overflow-y: hidden;
+    &--expanded {
+      height: 1407px;
+      animation: expandWindow 0.4s ease-out;
+    }
+  }
   &__main {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
+    max-width: 1120px;
   }
   &__button {
-    width: 187px;
+    width: 188px;
     height: 36px;
     display: flex;
     justify-content: center;
@@ -67,6 +76,9 @@ $pink-primary: #ff7878;
         background-image: url('../../../../../assets/img/arrow-down-pink.svg');
       }
     }
+    &--hidden {
+      display: none;
+    }
   }
   &__legend {
     font-family: 'MerriWeatherBold';
@@ -94,4 +106,16 @@ $pink-primary: #ff7878;
 
 .offering__main .offering__card--wrapper:nth-child(n + 1) {
   border-left: 1px solid transparent;
+}
+
+@keyframes expandWindow {
+  0%{
+    height: 351px;
+  }
+  50%{
+    height: 879px;
+  }
+  100%{
+    height: 1407px;
+  }
 }
