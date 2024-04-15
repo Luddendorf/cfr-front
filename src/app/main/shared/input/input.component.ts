@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'cfr-input',
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
-export class InputComponent {
+export class InputComponent implements ControlValueAccessor  {
   // errorMessage: string = '';
   @Input()
   data = {
