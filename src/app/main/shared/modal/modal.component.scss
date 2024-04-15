@@ -25,6 +25,7 @@ $box-shadow: rgba(0, 0, 0, 0.32) 0px 8px 40px 0px;
     justify-content: center;
     align-items: center;
     background-color: $black-transparent;
+    z-index: 2;
   }
   &__holder {
 

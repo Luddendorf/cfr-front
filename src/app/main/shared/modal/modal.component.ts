@@ -14,8 +14,16 @@ export class ModalComponent {
   @Input()
   modalData: any;
 
-  toggleModal(event: MouseEvent): void {
-    event.stopPropagation();
-    this.isShown = !this.isShown;
+  openModal(): void {
+    this.isShown = true;
+  }
+
+  closeModal(event: Event): void {
+    const target: HTMLElement = event.target as HTMLElement;
+    if (target.classList.contains('modal__close--icon')
+      || target.classList.contains('modal__main')) {
+      this.isShown = false;
+    }
+    
   }
 }

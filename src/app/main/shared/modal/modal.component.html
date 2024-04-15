@@ -1,22 +1,22 @@
 <div class="modal__container">
-  <div class="modal__trigger" (click)="toggleModal($event)">
+  <div class="modal__trigger" (click)="openModal()">
     <ng-content select=".modal-trigger"></ng-content>
   </div>
   <div class="modal__main" [ngClass]="{'modal__hide' : isShown == false }"
-       (click)="toggleModal($event)">
+       (click)="closeModal($event)">
     <div class="modal__holder">
       <div class="modal__box">
         <div class="modal__header">
           <div class="modal__header--head">{{ modalHeader }}</div>
-          <button class="modal__close" (click)="toggleModal($event)">
+          <button class="modal__close" (click)="closeModal($event)">
             <div class="modal__close--label">
               <span class="modal__close--icon"></span>
             </div>
           </button>
         </div>
         <ng-content select=".modal-window"></ng-content>
-        <div>{{ modalData | json }}</div>
-        <div>{{ modalData.age | currency : 'PLZ' : 'code' : '0.2-2' }}</div>
+        <!-- <div>{{ modalData | json }}</div>
+        <div>{{ modalData.age | currency : 'PLZ' : 'code' : '0.2-2' }}</div> -->
       </div>
     </div>
     <!-- <ng-content select=".modal-window"></ng-content> -->

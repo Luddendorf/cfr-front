@@ -1,0 +1,65 @@
+$black-text: #221f1f;
+$grey-medium: #545353;
+$grey-primary: #a6a5a5;
+$red-primary: #f84147;
+
+.input {
+  &__container {
+    width: 315px;
+    height: 82px;
+    display: flex;
+    flex-direction: column;
+    position: relative
+  }
+
+  &__field {
+    width: 315px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid $grey-primary;
+    padding: 0 12px;
+    color: $black-text;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'FiraSans';
+    box-sizing: border-box;
+    margin: 20px 0 0 0;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $grey-medium;
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    color: $grey-medium;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'FiraSans';
+    top: 33px;
+    left: 10px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  &__error-message {
+    margin: 4px 0 0 0;
+    color: $red-primary;
+    font-size: 12px;
+    font-family: 'FiraSans';
+    font-weight: normal;
+    line-height: 16px;
+  }
+}
+
+.input__field:focus ~ .input__placeholder,
+.input__field:not(:focus):valid ~ .input__placeholder,
+.input__field:focus-visible ~ .input__placeholder,
+.input__field:not(:focus-visible):valid ~ .input__placeholder 
+{
+  top: 0px;
+  left: 0px;
+  font-size: 12px;
+}
