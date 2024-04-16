@@ -1,6 +1,11 @@
 <div class="input__container">
-  <input class="input__field" type="text" autofocus required
-    (keyup)="takeInput($event)"/>
-  <label class="input__placeholder">{{ data.placeholder }}</label>
-  <div class="input__error-message">{{ errorMessage }}</div>
+  <input #inputElement class="input__field" type="text" autofocus required
+    (keyup)="onInput($event)" [ngClass]="{ 'input__field--disabled' : disabled === true }"/>
+  <label class="input__placeholder"
+    [ngClass]="{ 'input__placeholder--disabled' : disabled === true }">
+    {{ data.placeholder }}</label>
+  <button class="input__button--clear">
+    <div class="input__button--icon"></div>
+  </button>
+  <div *ngIf="errorMessage && touched" class="input__error-message">{{ errorMessage }}</div>
 </div>
