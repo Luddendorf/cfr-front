@@ -1,11 +1,47 @@
-<div class="input__container">
+<div *ngIf="data.type !== 'password'" class="input__container">
+  <ng-container [ngSwitch]="data.iconName">
+    <div *ngSwitchCase="'email'" class="input__icon--email"></div>
+    <div *ngSwitchCase="'password'" class="input__icon--holder">
+      <div class="input__icon--password"></div>
+    </div>
+    <div *ngSwitchCase="'phone'" class="input__icon--phone"></div>
+    <div *ngSwitchDefault class="input__icon--email"></div>
+  </ng-container>
   <input #inputElement class="input__field" type="text" autofocus required
     (keyup)="onInput($event)" [ngClass]="{ 'input__field--disabled' : disabled === true }"/>
   <label class="input__placeholder"
     [ngClass]="{ 'input__placeholder--disabled' : disabled === true }">
     {{ data.placeholder }}</label>
-  <button class="input__button--clear">
+  <button class="input__button--clear" (click)="clearInput()">
     <div class="input__button--icon"></div>
   </button>
   <div *ngIf="errorMessage && touched" class="input__error-message">{{ errorMessage }}</div>
 </div>
+
+<div *ngIf="data.type === 'password'" class="input__container">
+  <ng-container [ngSwitch]="data.iconName">
+    <div *ngSwitchCase="'email'" class="input__icon--email"></div>
+    <div *ngSwitchCase="'password'" class="input__icon--holder">
+      <div class="input__icon--password"></div>
+    </div>
+    <div *ngSwitchCase="'phone'" class="input__icon--phone"></div>
+    <div *ngSwitchDefault class="input__icon--email"></div>
+  </ng-container>
+  <div class="input__wrapper">
+    <input #inputElement class="input__field input__field--short" type="password"
+      autofocus required (keyup)="onInput($event)"
+      [ngClass]="{ 'input__field--disabled' : disabled === true }"/>
+    <label class="input__placeholder"
+      [ngClass]="{ 'input__placeholder--disabled' : disabled === true }">
+      {{ data.placeholder }}</label>
+    <button class="input__button--clear input__button--clear-short" (click)="clearInput()">
+      <div class="input__button--icon"></div>
+    </button>
+    <div class="input__icon--eye-holder" (click)="toggleShowPassword()">
+      <div *ngIf="!showPassword" class="input__icon--eye-blind"></div>
+      <div *ngIf="showPassword" class="input__icon--eye"></div>
+    </div>
+  </div>
+  <div *ngIf="errorMessage && touched" class="input__error-message">{{ errorMessage }}</div>
+</div>
+

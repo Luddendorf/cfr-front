@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Item } from '../../../shared/interfaces/item';
-import { ItemStatus } from '../../../shared/interfaces/item-status';
+import { Item } from '../../../shared/interfaces/good/item';
+import { ItemStatus } from '../../../shared/interfaces/good/item-status';
 
 @Component({
   selector: 'cfr-offering',

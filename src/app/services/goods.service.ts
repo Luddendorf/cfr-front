@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FilterGood } from '../main/shared/interfaces/filter-good';
-import { Good } from '../main/shared/interfaces/good';
+import { FilterGood } from '../main/shared/interfaces/good/filter-good';
+import { Good } from '../main/shared/interfaces/good/good';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 

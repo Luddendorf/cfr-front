@@ -1,5 +1,6 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputConfig } from '../interfaces/input-config';
 
 @Component({
   selector: 'cfr-input',
@@ -17,11 +18,14 @@ export class InputComponent implements ControlValueAccessor  {
   userInput: string = '';
   touched: boolean = false;
   disabled: boolean = false;
+  showPassword: boolean = false;
   // errorMessage: string = '';
 
   @Input()
-  data = {
+  data: InputConfig = {
     placeholder: 'Enter Your email',
+    iconName: 'password',
+    type: 'email',
     error: {
       required: null,
       // pattern: 'Email is not valid',
@@ -53,6 +57,25 @@ export class InputComponent implements ControlValueAccessor  {
     const userInput: string = targetElement.value;
     this.userInput = userInput;
     this.onChange(this.userInput);
+  }
+
+  clearInput(): void {
+    this.markAsTouched();
+    if (this.disabled) {
+      return;
+    }
+    this.userInput = '';
+    this.inputElement.nativeElement.value = this.userInput;
+    this.onChange(this.userInput);
+  }
+
+  toggleShowPassword(): void {
+    this.showPassword = !this.showPassword;
+    if (this.showPassword) {
+      this.inputElement.nativeElement.type = 'text';
+    } else {
+      this.inputElement.nativeElement.type = 'password';
+    }
   }
 
   writeValue(userInput: string): void {

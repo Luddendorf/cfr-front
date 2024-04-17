@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Item } from '../interfaces/item';
+import { Item } from '../interfaces/good/item';
 import { Router } from '@angular/router';
 
 @Component({

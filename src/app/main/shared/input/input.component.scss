@@ -6,6 +6,12 @@ $grey-primary: #a6a5a5;
 $grey-tertiary: #e9e9e9;
 $red-primary: #f84147;
 
+.input__background {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
 .input {
   &__container {
     width: 315px;
@@ -15,12 +21,16 @@ $red-primary: #f84147;
     position: relative;
   }
 
+  &__wrapper {
+    display: flex;
+  }
+
   &__field {
     width: 315px;
     height: 40px;
     border-radius: 8px;
     border: 1px solid $grey-primary;
-    padding: 0 12px;
+    padding: 0 42px 0 38px;
     color: $black-text;
     font-size: 14px;
     font-weight: normal;
@@ -29,6 +39,9 @@ $red-primary: #f84147;
     margin: 20px 0 0 0;
     &--disabled {
       background-color: $grey-disabled;
+    }
+    &--short {
+      width: 275px;
     }
 
     &:focus,
@@ -45,7 +58,7 @@ $red-primary: #f84147;
     font-weight: normal;
     font-family: 'FiraSans';
     top: 33px;
-    left: 10px;
+    left: 38px;
     pointer-events: none;
     transition: all 0.3s ease;
     &--disabled {
@@ -67,19 +80,21 @@ $red-primary: #f84147;
       justify-content: center;
       align-items: center;
       transition: all 0.3s;
+      cursor: pointer;
+      &-short {
+        right: 48px;
+      }
       &:hover {
         filter: brightness(0.8);
       }
     }
 
     &--icon {
+      @extend .input__background;
       display: block;
       width: 24px;
       height: 24px;
       background-image: url("../../../../assets/img/cross-grey.svg");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
     }
   }
 
@@ -90,6 +105,64 @@ $red-primary: #f84147;
     font-family: 'FiraSans';
     font-weight: normal;
     line-height: 16px;
+  }
+
+  &__icon {
+    &--holder {
+      box-sizing: border-box;
+      position: absolute;
+      top: 23px;
+      left: 2px;
+      width: 32px;
+      height: 32px;
+      padding: 2px;
+    }
+    &--email {
+      @extend .input__background;
+      position: absolute;
+      top: 25px;
+      left: 4px;
+      width: 32px;
+      height: 32px;
+      background-image: url("../../../../assets/img/email-open.svg");
+    }
+    &--password {
+      @extend .input__background;
+      width: 28px;
+      height: 28px;
+      background-image: url("../../../../assets/img/lock.svg");
+    }
+    &--phone {
+      @extend .input__background;
+      position: absolute;
+      top: 27px;
+      left: 4px;
+      width: 28px;
+      height: 28px;
+      background-image: url("../../../../assets/img/phone.svg");
+    }
+    &--eye {
+      &-holder {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0 0 0;
+        cursor: pointer;
+      }
+      @extend .input__background;
+      width: 28px;
+      height: 28px;
+      background-image: url("../../../../assets/img/eye.svg");
+
+      &-blind {
+        @extend .input__background;
+        width: 28px;
+        height: 28px;
+        background-image: url("../../../../assets/img/eye-closed.svg");
+      }
+    }
   }
 }
 
