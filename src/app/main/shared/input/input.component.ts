@@ -1,6 +1,7 @@
-import { Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputConfig } from '../interfaces/input-config';
+import { using } from 'rxjs';
 
 @Component({
   selector: 'cfr-input',
@@ -14,12 +15,15 @@ import { InputConfig } from '../interfaces/input-config';
     }
   ]
 })
-export class InputComponent implements ControlValueAccessor  {
+export class InputComponent implements AfterViewInit, ControlValueAccessor  {
   userInput: string = '';
   touched: boolean = false;
   disabled: boolean = false;
   showPassword: boolean = false;
   // errorMessage: string = '';
+  // constructor(private cdr: ChangeDetectorRef) {
+
+  // }
 
   @Input()
   data: InputConfig = {
@@ -36,7 +40,15 @@ export class InputComponent implements ControlValueAccessor  {
   @ViewChild('inputElement')
 	private inputElement = {} as ElementRef;
 
-  onChange = (unserInput: string) => {};
+  ngAfterViewInit(): void {
+    if (this.data.type == 'phone') {
+      this.inputElement.nativeElement.value = '+38';
+    }
+  }
+
+  onChange = (unserInput: string) => {
+    this.inputElement.nativeElement.value = unserInput;
+  };
 
   onTouched: Function = (touched: boolean) => {
     this.touched = touched;
@@ -55,7 +67,7 @@ export class InputComponent implements ControlValueAccessor  {
     }
     const targetElement = event.target as HTMLInputElement;
     const userInput: string = targetElement.value;
-    this.userInput = userInput;
+    this.userInput = this.data.type == 'phone' ? this.modifyPhoneInput(userInput) : userInput;
     this.onChange(this.userInput);
   }
 
@@ -64,7 +76,7 @@ export class InputComponent implements ControlValueAccessor  {
     if (this.disabled) {
       return;
     }
-    this.userInput = '';
+    this.userInput = this.data.type == 'phone' ? '+38' : '';
     this.inputElement.nativeElement.value = this.userInput;
     this.onChange(this.userInput);
   }
@@ -76,6 +88,27 @@ export class InputComponent implements ControlValueAccessor  {
     } else {
       this.inputElement.nativeElement.type = 'password';
     }
+  }
+
+  modifyPhoneInput(phoneInput: string): string {
+    if (!(phoneInput.substring(0, 3)).match(/\+38/g)) {
+      phoneInput = '+38';
+    }
+    let userPhone: string = phoneInput.substring(3);
+    const charsPhone: string[] = userPhone.replaceAll(/\D/g, '').substring(0, 14).split('');
+    
+    charsPhone.splice(0, 0, ' ');
+    if (charsPhone.length > 4) {
+      charsPhone.splice(4, 0, ' ');
+    }
+    if (charsPhone.length > 8) {
+      charsPhone.splice(8, 0, ' ');
+    }
+    if (charsPhone.length > 11) {
+      charsPhone.splice(11, 0, ' ');
+    }
+
+    return ('+38' + charsPhone.join('')).substring(0, 17);
   }
 
   writeValue(userInput: string): void {

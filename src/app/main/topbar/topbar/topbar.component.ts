@@ -30,4 +30,13 @@ export class TopbarComponent {
       required: null
     }
   };
+
+  phoneInputConfig: InputConfig = {
+    placeholder: 'Enter Your phone',
+    iconName: 'phone',
+    type: 'phone',
+    error: {
+      required: null
+    }
+  };
 }

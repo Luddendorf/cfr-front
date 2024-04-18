@@ -29,8 +29,7 @@
   </ng-container>
   <div class="input__wrapper">
     <input #inputElement class="input__field input__field--short" type="password"
-      autofocus required (keyup)="onInput($event)"
-      [ngClass]="{ 'input__field--disabled' : disabled === true }"/>
+      autofocus required (keyup)="onInput($event)" [ngClass]="{ 'input__field--disabled' : disabled === true }"/>
     <label class="input__placeholder"
       [ngClass]="{ 'input__placeholder--disabled' : disabled === true }">
       {{ data.placeholder }}</label>
