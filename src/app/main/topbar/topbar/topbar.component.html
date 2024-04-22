@@ -1,12 +1,14 @@
 <div class="topbar__container">
-  <cfr-modal [modalData]="metaData">
-    <button class="modal-trigger">Click here</button>
-    <div class="modal-window">
-      <div class="topbar__padding">
-        <cfr-input [data]="emailInputConfig"></cfr-input>
-        <cfr-input [data]="passwordInputConfig"></cfr-input>
-        <cfr-input [data]="phoneInputConfig"></cfr-input>
+  <div class="topbar__auth">
+    <cfr-modal [modalData]="metaData" [modalHeader]="signUpHeader">
+      <div class="modal-trigger">
+        <button class="topbar__auth--button">
+          <span class="topbar__auth--icon"></span>
+        </button>
       </div>
-    </div>
-  </cfr-modal>
+      <div class="modal-window">
+        <cfr-sign-up></cfr-sign-up>
+      </div>
+    </cfr-modal>
+  </div>
 </div>

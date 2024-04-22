@@ -1,0 +1,17 @@
+<button class="link__container">
+  <ng-container *ngIf="buttonIconName && iconPosition == 'left'">
+    <ng-container [ngSwitch]="buttonIconName">
+      <span *ngSwitchCase="'thumbUp'" class="link__icon--left link__icon--thumb-up"></span>
+      <span *ngSwitchDefault class="link__icon--left link__icon--thumb-up"></span>
+    </ng-container>
+  </ng-container>
+
+  <span class="link__text">{{ buttonText }}</span>
+
+  <ng-container *ngIf="buttonIconName && iconPosition == 'right'">
+    <ng-container [ngSwitch]="buttonIconName">
+      <span *ngSwitchCase="'thumbUp'" class="link__icon--right link__icon--thumb-up"></span>
+      <span *ngSwitchDefault class="link__icon--right link__icon--thumb-up"></span>
+    </ng-container>
+  </ng-container>
+</button>

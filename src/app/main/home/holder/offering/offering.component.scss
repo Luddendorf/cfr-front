@@ -13,7 +13,7 @@ $pink-primary: #ff7878;
   &__header {
     font-size: 20px;
     font-weight: bold;
-    font-family: 'FiraSans';
+    font-family: 'FiraSans', sans-serif;
     color: $black-text;
     line-height: 28px;
     margin: 0 0 16px 0;
@@ -60,7 +60,7 @@ $pink-primary: #ff7878;
     &--legend {
       font-size: 14px;
       font-weight: normal;
-      font-family: 'FiraSans';
+      font-family: 'FiraSans', sans-serif;
       margin: 0 7px 0 0;
     }
 

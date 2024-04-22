@@ -7,8 +7,11 @@ $blue-lighter: #314374;
 $blue-primary: #222E50;
 $blue-secondary: #3e77aa;
 $blue-white: #a7b6e4;
+$green-primary: #00a046;
+$green-secondary: #00bc52;
 $grey-disabled: #cccccc;
 $grey-disabled-text: #545454;
+$grey-hover: #ffffff33;
 $grey-medium: #545353;
 $grey-primary: #a6a5a5;
 $grey-secondary: #797878;
@@ -29,7 +32,46 @@ $white-lighter: #F8F8F8;
     height: 100px;
     display: flex;
     width: 100%;
-    background-color: $blue-lighter;
+    background-color: $black-text;
+    align-items: center;
+    padding: 0 32px;
+  }
+
+  &__auth {
+    height: 40px;
+    overflow: hidden;
+    &--button {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      appearance: none;
+      outline-style: none;
+      border-radius: 4px;
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: $grey-hover;
+      }
+      &::-moz-focus-inner {
+        border: none;
+        padding: 0;
+        background-color: $grey-hover;
+      }
+    }
+    &--icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-image: url("../../../../assets/img/user.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
   }
   &__padding {
     padding: 24px;

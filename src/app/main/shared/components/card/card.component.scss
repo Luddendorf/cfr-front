@@ -31,7 +31,7 @@ $orange-carrot: #ff5c00;
     height: 24px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-image: url('../../../../assets/img/thumb-up.svg');
+    background-image: url('../../../../../assets/img/thumb-up.svg');
   }
   &__image {
     max-width: 153px;
@@ -50,7 +50,7 @@ $orange-carrot: #ff5c00;
   }
   &__item-name {
     color: $black-text;
-    font-family: 'FiraSans';
+    font-family: 'FiraSans', sans-serif;
     font-size: 14px;
     text-decoration: none;
     margin: 0 0 12px 0;

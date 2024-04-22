@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { InputConfig } from '../interfaces/input-config';
+import { InputConfig } from '../../interfaces/input-config';
 import { using } from 'rxjs';
 
 @Component({
@@ -95,7 +95,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor  {
       phoneInput = '+38';
     }
     let userPhone: string = phoneInput.substring(3);
-    const charsPhone: string[] = userPhone.replaceAll(/\D/g, '').substring(0, 14).split('');
+    const charsPhone: string[] = userPhone.replaceAll(/\D/g, '').substring(0, 11).split('');
     
     charsPhone.splice(0, 0, ' ');
     if (charsPhone.length > 4) {

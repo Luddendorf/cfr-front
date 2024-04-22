@@ -1,0 +1,54 @@
+$blue-secondary: #3e77aa;
+$pink-primary: #ff7878;
+
+.link {
+  &__container {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $blue-secondary;
+    background-color: transparent;
+    border: none;
+    appearance: none;
+    outline-style: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $pink-primary;
+    }
+  }
+
+  &__text {
+    font-family: 'FiraSans', sans-serif;
+    color: inherit;
+    font-size: 16px;
+    font-style: normal;
+  }
+
+  &__icon {
+    &--left {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 8px 0 0;
+    }
+    &--right {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 0 0 8px;
+    }
+    
+    &--thumb-up {
+      background-image: url("../../../../../assets/img/thumb-up.svg");
+    }
+  }
+}

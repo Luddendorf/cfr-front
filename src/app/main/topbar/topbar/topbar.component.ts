@@ -7,36 +7,11 @@ import { InputConfig } from '../../shared/interfaces/input-config';
   styleUrl: './topbar.component.scss'
 })
 export class TopbarComponent {
+  signUpHeader = 'Sign Up';
   metaData = {
     name: 'John',
     surname: 'Travolta',
     age: 33
   };
 
-  emailInputConfig: InputConfig = {
-    placeholder: 'Enter Your email',
-    iconName: 'email',
-    type: 'email',
-    error: {
-      required: null
-    }
-  };
-
-  passwordInputConfig: InputConfig = {
-    placeholder: 'Enter Your password',
-    iconName: 'password',
-    type: 'password',
-    error: {
-      required: null
-    }
-  };
-
-  phoneInputConfig: InputConfig = {
-    placeholder: 'Enter Your phone',
-    iconName: 'phone',
-    type: 'phone',
-    error: {
-      required: null
-    }
-  };
 }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { SliderComponent } from './slider/slider.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { HomeSidebarComponent } from './home-sidebar/home-sidebar.component';
 import { HolderComponent } from './holder/holder.component';
 import { FooterModule } from '../footer/footer.module';
 import { OfferingComponent } from './holder/offering/offering.component';
@@ -12,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     HomeComponent,
     SliderComponent,
-    SidebarComponent,
+    HomeSidebarComponent,
     HolderComponent,
     OfferingComponent
   ],
