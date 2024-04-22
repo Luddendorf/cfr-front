@@ -9,6 +9,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LinkComponent } from './components/link/link.component';
     LoginComponent,
     ModalComponent,
     SignUpComponent,
-    UkrCurrencyPipe
+    UkrCurrencyPipe,
+    CheckboxComponent
   ],
   imports: [
     CommonModule

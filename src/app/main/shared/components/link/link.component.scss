@@ -1,5 +1,6 @@
 $blue-secondary: #3e77aa;
 $pink-primary: #ff7878;
+$red-primary: #f84147;
 
 .link {
   &__container {
@@ -51,4 +52,45 @@ $pink-primary: #ff7878;
       background-image: url("../../../../../assets/img/thumb-up.svg");
     }
   }
+
+  &__small {
+    display: flex;
+    align-items: center;
+    color: $blue-secondary;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    &:hover,
+    &:active,
+    &:focus {
+      color: $red-primary;
+      text-decoration: underline;
+    }
+    &--text {
+      color: inherit;
+      font-size: 14px;
+      font-family: 'FiraSans', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+    }
+    &--icon {
+      &-left {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 5px 0 0;
+      }
+      &-right {
+        display: block;
+        width: 16px;
+        height: 16px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+
+
 }

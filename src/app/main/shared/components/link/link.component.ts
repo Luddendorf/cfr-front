@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { LinkSize } from '../../interfaces/link-size';
 
 @Component({
   selector: 'cfr-link',
@@ -6,6 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './link.component.scss'
 })
 export class LinkComponent {
+  @Input()
+  size: LinkSize = LinkSize.Medium;
   @Input()
   buttonText: string = 'Button';
   @Input()

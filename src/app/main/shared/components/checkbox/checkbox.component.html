@@ -1,0 +1,10 @@
+<div *ngIf="position == 'Left'" class="checkbox__container">
+  <input type="checkbox" [id]="checkboxId" class="checkbox__input" />
+  <label [for]="checkboxId" class="checkbox__label checkbox__label--left">
+    {{ checkboxText }}</label>
+</div>
+<div *ngIf="position == 'Right'" class="checkbox__container">
+  <input type="checkbox" [id]="checkboxId" class="checkbox__input" />
+  <label [for]="checkboxId" class="checkbox__label checkbox__label--right">
+    {{ checkboxText }}</label>
+</div>
