@@ -15,4 +15,8 @@ export class LinkComponent {
   buttonIconName: string = '';
   @Input()
   iconPosition: string = '';
+  @Input()
+  height: string = '40px';
+  @Input()
+  fontSize: string = '16px';
 }

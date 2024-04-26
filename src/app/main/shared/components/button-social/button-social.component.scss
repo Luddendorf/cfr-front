@@ -1,0 +1,61 @@
+$grey-primary: #a6a5a5;
+$grey-tertiary: #e9e9e9;
+$blue-secondary: #3e77aa;
+$blue-tertiary: #408fd6;
+
+.button-social {
+  &__container {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $grey-tertiary;
+    border-radius: 8px;
+    border: 1px solid $grey-primary;
+    box-sizing: border-box;
+    box-shadow: rgb(235, 235, 235) 0px 0px 0px 1px inset;
+    appearance: none;
+    outline-style: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    &:hover>.button-social__text,
+    &:active>.button-social__text,
+    &:focus>.button-social__text {
+      color: $blue-tertiary;
+    }
+  }
+
+  &__text {
+    font-family: 'FiraSans', sans-serif;
+    color: $blue-secondary;
+    font-size: 18px;
+    font-style: normal;
+  }
+
+  &__icon {
+    &--left {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 12px 0 0;
+    }
+    &--right {
+      display: block;
+      width: 24px;
+      height: 24px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin: 0 0 0 12px;
+    }
+    
+    &--google {
+      background-image: url("../../../../../assets/img/google.svg");
+    }
+    &--facebook {
+      background-image: url("../../../../../assets/img/facebook.svg");
+    }
+  }
+}

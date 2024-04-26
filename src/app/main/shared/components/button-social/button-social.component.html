@@ -1,0 +1,25 @@
+<button class="button-social__container" [ngStyle]="{'height': height}">
+  <ng-container *ngIf="buttonIconName && iconPosition == 'Left'">
+    <ng-container [ngSwitch]="buttonIconName">
+      <span *ngSwitchCase="'google'"
+        class="button-social__icon--left button-social__icon--google"></span>
+      <span *ngSwitchCase="'facebook'"
+        class="button-social__icon--left button-social__icon--facebook"></span>
+      <span *ngSwitchDefault class="button-social__icon--left button-social__icon--google">
+      </span>
+    </ng-container>
+  </ng-container>
+
+  <span class="button-social__text" [ngStyle]="{'font-size': fontSize}">{{ buttonText }}</span>
+
+  <ng-container *ngIf="buttonIconName && iconPosition == 'Right'">
+    <ng-container [ngSwitch]="buttonIconName">
+      <span *ngSwitchCase="'google'"
+        class="button-social__icon--right button-social__icon--google"></span>
+      <span *ngSwitchCase="'facebook'"
+        class="button-social__icon--right button-social__icon--facebook"></span>
+      <span *ngSwitchDefault class="button-social__icon--right button-social__icon--google">
+      </span>
+    </ng-container>
+  </ng-container>
+</button>

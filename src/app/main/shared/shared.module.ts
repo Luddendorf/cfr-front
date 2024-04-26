@@ -10,10 +10,12 @@ import { LoginComponent } from './components/login/login.component';
 import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { ButtonSocialComponent } from './components/button-social/button-social.component';
 
 @NgModule({
   declarations: [
     ButtonComponent,
+    ButtonSocialComponent,
     CardComponent,
     HoverDirective,
     InputComponent,
@@ -29,6 +31,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
   ],
   exports: [
     ButtonComponent,
+    ButtonSocialComponent,
     CardComponent,
     HoverDirective,
     InputComponent,

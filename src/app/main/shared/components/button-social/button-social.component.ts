@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { Position } from '../../interfaces/position';
 
 @Component({
-  selector: 'cfr-button',
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.scss'
+  selector: 'cfr-button-social',
+  templateUrl: './button-social.component.html',
+  styleUrl: './button-social.component.scss'
 })
-export class ButtonComponent {
+export class ButtonSocialComponent {
   @Input()
   buttonText: string = 'Button';
   @Input()
@@ -14,7 +14,7 @@ export class ButtonComponent {
   @Input()
   iconPosition: Position = Position.Left;
   @Input()
-  height: string = '40px';
+  height: string = '48px';
   @Input()
-  fontSize: string = '16px';
+  fontSize: string = '18px';
 }

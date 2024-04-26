@@ -1,15 +1,37 @@
 <div class="sign-up__container">
-  <cfr-input [data]="emailInputConfig"></cfr-input>
-  <cfr-input [data]="passwordInputConfig"></cfr-input>
-  <div class="sign-up__button--continue">
-    <cfr-button [buttonText]="buttonContinueText"></cfr-button>
+  <form action="" class="sign-up__form">
+    <div class="sign-up__form--row">
+      <cfr-input [data]="emailInputConfig"></cfr-input>
+    </div>
+    <div class="sign-up__form--row">
+      <cfr-input [data]="passwordInputConfig"></cfr-input>
+    </div>
+
+    <div class="sign-up__form--row">
+      <div class="sign-up__form--restore">
+        <cfr-checkbox [checkboxId]="checkboxId" [checkboxText]="checkboxText"
+          [position]="checkboxPosition"></cfr-checkbox>
+        <cfr-link [buttonText]="linkRemindPasswordText" [size]="remindPasswordSize"></cfr-link>
+      </div>
+    </div>
+
+    <div class="sign-up__form--row">
+      <div class="sign-up__button--continue">
+        <cfr-button [buttonText]="buttonLoginText" [height]="'48px'"
+          [fontSize]="'18px'"></cfr-button>
+      </div>
+    </div>
+    <cfr-link [buttonText]="signUpText" [height]="'20px'"></cfr-link>
+    <span class="sign-up__divider"> or </span>
+  </form>
+  
+  <div class="sign-up__login">
+    <div class="sign-up__login--text">Login</div>
+    <cfr-button-social [buttonIconName]="'google'"
+      [buttonText]="'Google'"></cfr-button-social>
+    <div class="sign-up__login--row">
+      <cfr-button-social [buttonIconName]="'facebook'"
+      [buttonText]="'Facebook'"></cfr-button-social>
+    </div>
   </div>
-  <div class="sign-up__link">
-    <cfr-link [buttonText]="linkRemindPasswordText"></cfr-link>
-  </div>
-  <cfr-link [buttonText]="linkLoginPhoneText"></cfr-link>
-  <cfr-link [buttonText]="linkRemindPasswordText" [size]="remindPasswordSize"></cfr-link>
-  <!-- <cfr-checkbox></cfr-checkbox> -->
-  <cfr-checkbox [position]="checkboxPosition"></cfr-checkbox>
-  <!-- <cfr-input [data]="phoneInputConfig"></cfr-input> -->
 </div>

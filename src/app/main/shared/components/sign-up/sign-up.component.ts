@@ -9,11 +9,16 @@ import { Position } from '../../interfaces/position';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  buttonContinueText: string = 'Continue';
-  linkRemindPasswordText: string = 'Remind password';
+  buttonLoginText: string = 'Login';
   linkLoginPhoneText: string = 'Login via phone number';
+
+  linkRemindPasswordText: string = 'Remind password';
   remindPasswordSize: LinkSize = LinkSize.Small;
-  checkboxPosition: Position = Position.Right;
+  checkboxId: string = 'checkbox-remember-me';
+  checkboxText: string = 'Remember me';
+  checkboxPosition: Position = Position.Left;
+
+  signUpText: string = 'Sign Up';
 
   emailInputConfig: InputConfig = {
     placeholder: 'Enter Your email',

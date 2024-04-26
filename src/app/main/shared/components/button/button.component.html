@@ -1,14 +1,14 @@
-<button class="button__container">
-  <ng-container *ngIf="buttonIconName && iconPosition == 'left'">
+<button class="button__container" [ngStyle]="{'height': height}">
+  <ng-container *ngIf="buttonIconName && iconPosition == 'Left'">
     <ng-container [ngSwitch]="buttonIconName">
       <span *ngSwitchCase="'thumbUp'" class="button__icon--left button__icon--thumb-up"></span>
       <span *ngSwitchDefault class="button__icon--left button__icon--thumb-up"></span>
     </ng-container>
   </ng-container>
 
-  <span class="button__text">{{ buttonText }}</span>
+  <span class="button__text" [ngStyle]="{'font-size': fontSize}">{{ buttonText }}</span>
 
-  <ng-container *ngIf="buttonIconName && iconPosition == 'right'">
+  <ng-container *ngIf="buttonIconName && iconPosition == 'Right'">
     <ng-container [ngSwitch]="buttonIconName">
       <span *ngSwitchCase="'thumbUp'" class="button__icon--right button__icon--thumb-up"></span>
       <span *ngSwitchDefault class="button__icon--right button__icon--thumb-up"></span>
