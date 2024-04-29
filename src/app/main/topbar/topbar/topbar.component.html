@@ -1,13 +1,14 @@
 <div class="topbar__container">
   <div class="topbar__auth">
-    <cfr-modal [modalData]="metaData" [modalHeader]="signUpHeader">
+    <cfr-modal [modalData]="metaData" [modalHeader]="getModalHeader()">
       <div class="modal-trigger">
         <button class="topbar__auth--button">
           <span class="topbar__auth--icon"></span>
         </button>
       </div>
       <div class="modal-window">
-        <cfr-sign-up></cfr-sign-up>
+        <cfr-sign-up *ngIf="!hasCookie"></cfr-sign-up>
+        <cfr-login *ngIf="hasCookie"></cfr-login>
       </div>
     </cfr-modal>
   </div>

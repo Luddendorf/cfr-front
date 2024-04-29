@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="login__container">
+  <ng-container *ngIf="!isEmailLogin">
+    <form [formGroup]="loginFormPhone" action="" class="login__form">
+      <div class="login__form--row">
+        <cfr-input formControlName="phone" [data]="phoneInputConfig">
+        </cfr-input>
+      </div>
+      <div class="login__form--row">
+        <div class="login__button--continue">
+          <cfr-button [buttonText]="buttonLoginText" [height]="'40px'"
+            [fontSize]="'16px'" (click)="login()"></cfr-button>
+        </div>
+      </div>
+    </form>
+    <div class="login__divider">
+      <div class="login__divider--text">or</div>
+    </div>
+    <div class="login__social--buttons">
+      <div class="login__social--button">
+        <cfr-button-social [buttonIconName]="'google'"
+          [buttonText]="'Google'"></cfr-button-social>
+      </div>
+      <div class="login__social--button">
+        <cfr-button-social [buttonIconName]="'facebook'"
+          [buttonText]="'Facebook'"></cfr-button-social>
+      </div>
+    </div>
+    <cfr-link [buttonText]="loginViaEmail" [height]="'40px'"
+      (click)="toggleLoginFlow()"></cfr-link>
+  </ng-container>
+  <ng-container *ngIf="isEmailLogin">
+    <form [formGroup]="loginFormEmail" action="" class="login__form">
+      <div class="login__form--row">
+        <cfr-input formControlName="email" [data]="emailInputConfig"></cfr-input>
+      </div>
+      <div class="login__form--row">
+        <cfr-input formControlName="password" [data]="passwordInputConfig">
+        </cfr-input>
+      </div>
+      <div class="login__form--row">
+        <div class="login__button--continue">
+          <cfr-button [buttonText]="buttonLoginText" [height]="'40px'"
+            [fontSize]="'16px'" (click)="login()"></cfr-button>
+        </div>
+      </div>
+    </form>
+    <div class="login__link--row">
+      <cfr-link [buttonText]="remindPassword" [height]="'40px'"></cfr-link>
+    </div>
+    <div class="login__link--row-small">
+      <cfr-link [buttonText]="loginViaPhone" [height]="'40px'"
+        (click)="toggleLoginFlow()"></cfr-link>
+    </div>
+  </ng-container>
+</div>

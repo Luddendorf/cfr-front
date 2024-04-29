@@ -123,7 +123,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor  {
     this.onTouched = onTouched;
   }
 
-  markAsTouched() {
+  markAsTouched(): void {
     if (!this.touched) {
       this.touched = true;
       this.onTouched(this.touched);
@@ -132,6 +132,9 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor  {
 
   setDisabledState(disabled: boolean) {
     this.disabled = disabled;
+    if (!this.inputElement || !this.inputElement.nativeElement) {
+      return;
+    }
     this.inputElement.nativeElement.disabled = disabled;
     if (disabled) {
       this.inputElement.nativeElement.value = '';

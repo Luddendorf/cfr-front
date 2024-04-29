@@ -1,6 +1,8 @@
 $black-text: #221f1f;
 $green-primary: #00a046;
 $grey-checkbox: #d2d2d2;
+$grey-primary: #a6a5a5;
+$grey-secondary: #797878;
 
 .checkbox {
   &__container {
@@ -50,6 +52,13 @@ $grey-checkbox: #d2d2d2;
         right: -26px;
       }
     }
+    &--disabled {
+      color: $grey-primary;
+      &::selection {
+        color: $grey-primary;
+        background-color: transparent;
+      }
+    }
   }
 }
 
@@ -64,4 +73,22 @@ input[type="checkbox"]:checked + label::before {
   background-repeat: no-repeat;
   background-size: 10px 8px;
   border-color: $green-primary;
+}
+
+input[type="checkbox"]:disabled + label:hover::before {
+  border-color: $grey-secondary;
+  background-color: $grey-primary;
+}
+
+input[type="checkbox"]:disabled + label::before {
+  background-color: $grey-primary;
+  background-image: url("../../../../../assets/img/checkbox.svg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 10px 8px;
+  border-color: $grey-primary;
+}
+
+input[type="checkbox"]:disabled + label:hover::before {
+  border-color: $grey-primary;
 }

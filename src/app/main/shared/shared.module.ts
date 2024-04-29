@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import { CardComponent } from './components/card/card.component';
 import { HoverDirective } from './directives/hover.directive';
@@ -27,7 +28,8 @@ import { ButtonSocialComponent } from './components/button-social/button-social.
     CheckboxComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports: [
     ButtonComponent,

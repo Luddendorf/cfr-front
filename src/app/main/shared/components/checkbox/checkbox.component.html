@@ -1,10 +1,14 @@
 <div *ngIf="position == 'Left'" class="checkbox__container">
-  <input type="checkbox" [id]="checkboxId" class="checkbox__input" />
-  <label [for]="checkboxId" class="checkbox__label checkbox__label--left">
+  <input #checkboxElement type="checkbox" [id]="checkboxId"
+    class="checkbox__input" (change)="onCheck($event)"/>
+  <label [for]="checkboxId" class="checkbox__label checkbox__label--left"
+    [ngClass]="{ 'checkbox__label--disabled' : disabled === true }">
     {{ checkboxText }}</label>
 </div>
 <div *ngIf="position == 'Right'" class="checkbox__container">
-  <input type="checkbox" [id]="checkboxId" class="checkbox__input" />
-  <label [for]="checkboxId" class="checkbox__label checkbox__label--right">
+  <input #checkboxElement type="checkbox" [id]="checkboxId"
+    class="checkbox__input" (change)="onCheck($event)"/>
+  <label [for]="checkboxId" class="checkbox__label checkbox__label--right"
+    [ngClass]="{ 'checkbox__label--disabled' : disabled === true }">
     {{ checkboxText }}</label>
 </div>
