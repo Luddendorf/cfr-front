@@ -1,8 +1,10 @@
 <div class="login__container">
-  <ng-container *ngIf="!isEmailLogin">
+  <cfr-input [data]="phoneInputConfig"></cfr-input>
+  <div [ngClass]="{ 'login__hide' : isEmailLogin === true }">
     <form [formGroup]="loginFormPhone" action="" class="login__form">
       <div class="login__form--row">
-        <cfr-input formControlName="phone" [data]="phoneInputConfig">
+        <cfr-input formControlName="phone" [data]="phoneInputConfig"
+          (userInputFinal)="patchPhoneInput($event)">
         </cfr-input>
       </div>
       <div class="login__form--row">
@@ -27,8 +29,9 @@
     </div>
     <cfr-link [buttonText]="loginViaEmail" [height]="'40px'"
       (click)="toggleLoginFlow()"></cfr-link>
-  </ng-container>
-  <ng-container *ngIf="isEmailLogin">
+  </div>
+
+  <div [ngClass]="{ 'login__hide' : isEmailLogin === false }">
     <form [formGroup]="loginFormEmail" action="" class="login__form">
       <div class="login__form--row">
         <cfr-input formControlName="email" [data]="emailInputConfig"></cfr-input>
@@ -51,5 +54,5 @@
       <cfr-link [buttonText]="loginViaPhone" [height]="'40px'"
         (click)="toggleLoginFlow()"></cfr-link>
     </div>
-  </ng-container>
+  </div>
 </div>

@@ -1,0 +1,108 @@
+$black-text: #221f1f;
+$grey-disabled: #cccccc;
+$grey-medium: #545353;
+$grey-primary: #a6a5a5;
+
+@mixin typeahead-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: none;
+  appearance: none;
+  outline-style: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: white;
+  }
+}
+
+@mixin typeahead-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.typeahead {
+  &__form {
+    display: flex;
+  }
+  &__main {
+    display: flex;
+  }
+  &__search {
+    @include typeahead-button;
+    min-width: 40px;
+    height: 40px;
+
+    &--icon {
+      @include typeahead-icon;
+      background-image: url("../../../../../assets/img/search.svg");
+    }
+  }
+  &__input {
+    width: 100%;
+    height: 40px;
+    border-radius: 0;
+    //border-top-left-radius: 8px;
+    //border-bottom-left-radius: 8px;
+    //border-radius : 8px;
+    border: 1px solid $grey-primary;
+    // padding: 0;
+    color: $black-text;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'FiraSans', sans-serif;
+    box-sizing: border-box;
+    //margin: 20px 0 0 0;
+    &--disabled {
+      background-color: $grey-disabled;
+    }
+    &--short {
+      width: calc(100% - 40px);
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $grey-medium;
+    }
+  }
+  &__clear {
+    @include typeahead-button;
+    min-width: 40px;
+    height: 40px;
+
+    &--icon {
+      @include typeahead-icon;
+      width: 14px;
+      height: 14px;
+      background-image: url("../../../../../assets/img/cross-blue.svg");
+      &-hovered {
+        @include typeahead-icon;
+        width: 14px;
+        height: 14px;
+        background-image: url("../../../../../assets/img/cross-pink.svg");
+      }
+    }
+  }
+  &__voice {
+    @include typeahead-button;
+    min-width: 40px;
+    height: 40px;
+
+    &--icon {
+      @include typeahead-icon;
+      background-image: url("../../../../../assets/img/voice.svg");
+      &-hovered {
+        @include typeahead-icon;
+        background-image: url("../../../../../assets/img/voice-pink.svg");
+      }
+    }
+  }
+}

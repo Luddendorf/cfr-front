@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { InputConfig } from '../../interfaces/input-config';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,82 +8,80 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrl: './login.component.scss'
 })
 export class LoginComponent implements OnInit {
-  isEmailLogin: boolean = false;
+  isEmailLogin: boolean = true;
   buttonLoginText: string = 'Continue';
   loginViaEmail: string = 'Login via email';
   loginViaPhone: string = 'Login via phone';
   remindPassword: string = 'Remind password';
-  passwordRegx: RegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\?\&\']).{8,30}/;
+  passwordRegex: RegExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\!\@\#\$\%\^\?\&\']).{8,30}/;
+  // phoneRegex: RegExp = //;
 
   emailInputConfig: InputConfig = {
     placeholder: 'Enter Your email',
     iconName: 'email',
     type: 'email',
-    error: {
-      required: null
-    }
+    errors: null
   };
 
   passwordInputConfig: InputConfig = {
     placeholder: 'Enter Your password',
     iconName: 'password',
     type: 'password',
-    error: {
-      required: null
-    }
+    errors: null
   };
 
   phoneInputConfig: InputConfig = {
     placeholder: 'Enter Your phone',
     iconName: 'phone',
     type: 'phone',
-    error: {
-      required: null
-    }
+    errors: null
   };
 
-  loginFormPhone: FormGroup; 
-  // = new FormGroup({phone: new FormControl('')});
   loginFormEmail: FormGroup; 
- // = new FormGroup({email: new FormControl('')});
-
-  constructor(private formBuilder: FormBuilder) {
-    // this.initLoginForm();
+  loginFormPhone: FormGroup;
+  
+  constructor(private formBuilder: FormBuilder, private cdRef: ChangeDetectorRef) {
     this.loginFormEmail = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(this.passwordRegx)]]
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(320)]],
+      password: ['', [Validators.required, Validators.pattern(this.passwordRegex)]]
     });
     this.loginFormPhone = this.formBuilder.group({
-      phone: ['', Validators.required]
+      phone: ['', [Validators.required, Validators.minLength(17), Validators.maxLength(17)
+      // Validators.pattern()
+      ]]
     });
   }
 
-  ngOnInit(): void {
-   // this.initLoginForm();
-
-  }
+  ngOnInit(): void {}
 
   toggleLoginFlow() {
     this.isEmailLogin = !this.isEmailLogin;
-    this.initLoginForm();
   }
 
-  initLoginForm(): void {
-    if (this.isEmailLogin) {
-      this.loginFormEmail = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.pattern(this.passwordRegx)]]
-      });
-    }
-    if (!this.isEmailLogin) {
-      this.loginFormPhone = this.formBuilder.group({
-        phone: ['', Validators.required]
-      });
-    }
+  patchPhoneInput(phoneInput: string): void {
+    console.log('GOT phoneInput ', phoneInput);
+    
+    this.loginFormPhone.get('phone')?.setValue(phoneInput);
+    //this.cdRef.markForCheck();
   }
+
+
 
   login() {
-    console.log(this.loginFormEmail);
-    console.log(this.loginFormPhone);
+    // console.log(this.loginFormPhone);
+    if (this.isEmailLogin) {
+
+      //console.log(this.loginFormEmail.get('email')?.errors);
+      //console.log(this.loginFormEmail.get('password')?.errors);
+
+      this.emailInputConfig = { ...this.emailInputConfig, errors: this.loginFormEmail
+        .get('email')?.errors };
+      this.passwordInputConfig = { ...this.passwordInputConfig, errors: this.loginFormEmail
+        .get('password')?.errors };
+    } else {
+      console.log(this.loginFormPhone);
+      this.phoneInputConfig = { ...this.phoneInputConfig, errors: this.loginFormPhone
+        .get('phone')?.errors };
+    }
   }
 }

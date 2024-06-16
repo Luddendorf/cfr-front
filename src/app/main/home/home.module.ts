@@ -23,4 +23,4 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [HomeComponent]
 })
-export class HomeModule { }
+export class HomeModule {}

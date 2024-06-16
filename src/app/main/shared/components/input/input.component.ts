@@ -1,7 +1,6 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputConfig } from '../../interfaces/input-config';
-import { using } from 'rxjs';
 
 @Component({
   selector: 'cfr-input',
@@ -10,7 +9,7 @@ import { using } from 'rxjs';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      multi:true,
+      multi: true,
       useExisting: InputComponent
     }
   ]
@@ -21,21 +20,17 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor  {
   disabled: boolean = false;
   showPassword: boolean = false;
   // errorMessage: string = '';
-  // constructor(private cdr: ChangeDetectorRef) {
-
-  // }
 
   @Input()
   data: InputConfig = {
     placeholder: 'Enter Your email',
     iconName: 'password',
     type: 'email',
-    error: {
-      required: null,
-      // pattern: 'Email is not valid',
-      // taken: 'Email is already in use.'
-    }
+    errors: null
   };
+
+  @Output()
+  userInputFinal = new EventEmitter<string>();
 
   @ViewChild('inputElement')
 	private inputElement = {} as ElementRef;
@@ -46,18 +41,54 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor  {
     }
   }
 
-  onChange = (unserInput: string) => {
-    this.inputElement.nativeElement.value = unserInput;
+  onChange = (userInput: string): void => {
+    console.log('UPDATED userInput ', userInput);
+    this.inputElement.nativeElement.value = userInput;
+    // this.userInputFinal.emit(userInput);
   };
 
   onTouched: Function = (touched: boolean) => {
     this.touched = touched;
   };
 
-  get errorMessage(): string | null {
-    return Object.values(this.data.error).filter(e => {
-      return e !== undefined && e !== null && e !== ''
-    })[0];
+  get errorMessage(): string {
+    if (this.data.errors) {
+      //console.log(Object.keys(this.data.errors)[0]);
+      switch (Object.keys(this.data.errors)[0]) {
+        case 'email':
+          return 'Not a valid email';
+        case 'required':
+          if (this.data.type == 'email') {
+            return 'Email is required';
+          }
+          if (this.data.type == 'password') {
+            return 'Password is required';
+          }
+          if (this.data.type == 'phone') {
+            return 'Phone is required';
+          }
+          break;
+        case 'maxlength':
+          if (this.data.type == 'email') {
+            return 'Email is 320 letters max.';
+          }
+          if (this.data.type == 'phone') {
+            return 'Phone is 13 letters max.';
+          }
+          break;
+        case 'minlength':
+          if (this.data.type == 'phone') {
+            return 'Phone is 13 letter min.';
+          }
+          break;
+        case 'pattern':
+          return 'Password must have 1 letter, 1 digit and 1 symbol and '
+            + 'be at least 8 letters long';  
+        default:
+          'The field is required';
+      }
+    }
+    return '';
   }
 
   onInput(event: KeyboardEvent): void {
@@ -68,6 +99,8 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor  {
     const targetElement = event.target as HTMLInputElement;
     const userInput: string = targetElement.value;
     this.userInput = this.data.type == 'phone' ? this.modifyPhoneInput(userInput) : userInput;
+    console.log('FRESH INPUT ', this.userInput);
+    // this.userInputFinal.emit(this.userInput);
     this.onChange(this.userInput);
   }
 

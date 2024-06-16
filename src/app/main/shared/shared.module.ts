@@ -12,6 +12,8 @@ import { ButtonComponent } from './components/button/button.component';
 import { LinkComponent } from './components/link/link.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ButtonSocialComponent } from './components/button-social/button-social.component';
+import { TypeaheadComponent } from './components/typeahead/typeahead.component';
+import { BallComponent } from './components/ball/ball.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ButtonSocialComponent } from './components/button-social/button-social.
     ModalComponent,
     SignUpComponent,
     UkrCurrencyPipe,
-    CheckboxComponent
+    CheckboxComponent,
+    TypeaheadComponent,
+    BallComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +45,9 @@ import { ButtonSocialComponent } from './components/button-social/button-social.
     LoginComponent,
     ModalComponent,
     SignUpComponent,
-    UkrCurrencyPipe
+    TypeaheadComponent,
+    UkrCurrencyPipe,
+    BallComponent
   ]
 })
 export class SharedModule { }

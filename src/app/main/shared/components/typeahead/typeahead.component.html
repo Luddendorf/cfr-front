@@ -1,0 +1,28 @@
+<div class="typeahead__container">
+  <form action="" class="typeahead__form">
+    <div class="typeahead__main">
+      <button class="typeahead__search">
+        <span class="typeahead__search--icon"></span>
+      </button>
+      <input type="text" class="typeahead__input" [placeholder]="inputPlaceholder"/>
+      <button class="typeahead__clear" (mouseover)="toggleClearButtonIcon($event)"
+        (mouseout)="toggleClearButtonIcon($event)">
+        <span [ngClass]="clearButtonClass"></span>
+      </button>
+      <span class="typeahead__divider"></span>
+      <button class="typeahead__voice" (mouseover)="toggleVoiceButtonIcon($event)"
+        (mouseout)="toggleVoiceButtonIcon($event)">
+        <span [ngClass]="voiceButtonClass"></span>
+      </button>
+    </div>
+    <cfr-button [buttonText]="searchButtonText" [height]="'40px'"
+      [fontSize]="'16px'" [borderRadius]="buttonBorderRadius"></cfr-button>
+    <!-- <button></button> -->
+  </form>
+
+
+  <!-- <input id="type-ahead" />
+  <hr />
+  <div id="output"></div> -->
+</div>
+

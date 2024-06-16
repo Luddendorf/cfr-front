@@ -10,7 +10,6 @@ $white-lighter: #F8F8F8;
     align-items: center;
     justify-content: center;
     background-color: $green-primary;
-    border-radius: 8px;
     border: none;
     appearance: none;
     outline-style: none;
@@ -50,6 +49,30 @@ $white-lighter: #F8F8F8;
     
     &--thumb-up {
       background-image: url("../../../../../assets/img/thumb-up.svg");
+    }
+  }
+  &__border-radius {
+    &--all {
+      border-radius: 8px;
+    }
+    &--bottom {
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    &--left {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+    &--right {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    &--top {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+    &--none {
+      border-radius: 0px;
     }
   }
 }

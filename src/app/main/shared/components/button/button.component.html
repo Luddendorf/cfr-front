@@ -1,4 +1,5 @@
-<button class="button__container" [ngStyle]="{'height': height}">
+<button class="button__container" [ngStyle]="{'height': height}"
+  [ngClass]="borderRadiusClass">
   <ng-container *ngIf="buttonIconName && iconPosition == 'Left'">
     <ng-container [ngSwitch]="buttonIconName">
       <span *ngSwitchCase="'thumbUp'" class="button__icon--left button__icon--thumb-up"></span>
