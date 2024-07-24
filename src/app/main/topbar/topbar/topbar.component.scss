@@ -7,6 +7,7 @@ $blue-lighter: #314374;
 $blue-primary: #222E50;
 $blue-secondary: #3e77aa;
 $blue-tertiary: #408fd6;
+$blue-aqua: #6fc4e5;
 $blue-white: #a7b6e4;
 $green-primary: #00a046;
 $green-secondary: #00bc52;
@@ -37,6 +38,8 @@ $white-lighter: #F8F8F8;
     background-color: $black-text;
     align-items: center;
     padding: 0 32px;
+    position: fixed;
+    z-index: 2;
   }
 
   &__auth {

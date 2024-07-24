@@ -18,9 +18,12 @@ export class ButtonComponent implements OnInit {
   @Input()
   height: string = '40px';
   @Input()
+  width: string = 'auto';
+  @Input()
   fontSize: string = '16px';
   @Input()
   borderRadius: BorderRadius = BorderRadius.All;
+  
 
   ngOnInit(): void {
     this.borderRadiusClass = this.getBorderRadiusClass();

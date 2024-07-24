@@ -1,8 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { Inject, Component, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
-import { fromEvent, of } from 'rxjs';
+import { Inject, Component, AfterViewInit, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Subscribable, Subscription, fromEvent, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { BorderRadius } from '../../interfaces/border-radius';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'cfr-typeahead',
@@ -10,14 +11,31 @@ import { BorderRadius } from '../../interfaces/border-radius';
   styleUrl: './typeahead.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TypeaheadComponent implements AfterViewInit {
+export class TypeaheadComponent implements OnInit, AfterViewInit {
   inputPlaceholder: string = 'I search...';
   searchButtonText: string = 'Find';
   buttonBorderRadius: BorderRadius = BorderRadius.Right;
   clearButtonClass: string = 'typeahead__clear--icon';
   voiceButtonClass: string = 'typeahead__voice--icon';
+  searchForm: FormGroup<any>;
+  showClearButton: boolean = false;
+  searchInputSub: Subscription | undefined;
+  items: number[] = [1, 2, 3, 4, 5, 6];
 
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(@Inject(DOCUMENT) private document: Document,
+              private fb: FormBuilder) {
+    this.searchForm = this.fb.group({'searchInput': ['']});
+  }
+
+  ngOnInit(): void {
+    this.searchInputSub = this.searchForm.get('searchInput')?.valueChanges.subscribe(
+      userInput => {
+        this.showClearButton = userInput ? true : false;
+        console.log(userInput);
+        
+      }
+    );
+  }
 
   ngAfterViewInit(): void {
    // this.listenUserInput();
@@ -32,7 +50,6 @@ export class TypeaheadComponent implements AfterViewInit {
     this.voiceButtonClass = event.type == 'mouseover'
       ? 'typeahead__voice--icon-hovered' : 'typeahead__voice--icon';
   }
-
 
   getContinents = (keys: string) =>
   [
@@ -49,6 +66,18 @@ export class TypeaheadComponent implements AfterViewInit {
     of(this.getContinents(keys)).pipe(
       tap(_ => console.log(`API CALL at ${new Date()}`))
   );
+
+  onSearchInputFocus(): void {
+
+  }
+
+  onSearchInputBlur(): void {
+
+  }
+
+  clearSearch(): void {
+    this.searchForm.get('searchInput')?.setValue('');
+  }
 /*
   listenUserInput(): void {
     const intputEl: any = this.document.getElementById('type-ahead');

@@ -29,16 +29,27 @@ $grey-primary: #a6a5a5;
 }
 
 .typeahead {
+  &__container {
+   //  position: relative;
+  }
   &__form {
     display: flex;
   }
   &__main {
     display: flex;
+    width: 774px;
+    flex-direction: column;
+    // padding: 0 80px 0 0;
   }
   &__search {
+    &-block {
+      display: flex;
+      // width: 100%;
+    }
     @include typeahead-button;
     min-width: 40px;
     height: 40px;
+    border-radius: 3px 0 0 3px;
 
     &--icon {
       @include typeahead-icon;
@@ -46,31 +57,34 @@ $grey-primary: #a6a5a5;
     }
   }
   &__input {
+    flex: 1 0 591px;
     width: 100%;
     height: 40px;
     border-radius: 0;
-    //border-top-left-radius: 8px;
-    //border-bottom-left-radius: 8px;
-    //border-radius : 8px;
-    border: 1px solid $grey-primary;
-    // padding: 0;
     color: $black-text;
     font-size: 14px;
     font-weight: normal;
     font-family: 'FiraSans', sans-serif;
     box-sizing: border-box;
-    //margin: 20px 0 0 0;
+    outline-style: none;
+    border: none;
+    border-right: 2px solid transparent;
+    line-height: 1.15;
+    margin: 0;
     &--disabled {
       background-color: $grey-disabled;
     }
     &--short {
       width: calc(100% - 40px);
     }
+    &--not-empty {
+      border-right: 1px solid $grey-primary;
+    }
 
     &:focus,
     &:focus-visible {
       outline: none;
-      border: 1px solid $grey-medium;
+      border: none;
     }
   }
   &__clear {
@@ -105,4 +119,44 @@ $grey-primary: #a6a5a5;
       }
     }
   }
+
+  &__suggestion {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: calc(100vh - 100px);
+    z-index: 5;
+    background-color: rgba(84, 83, 83, 0.6);
+    
+    &--list {
+      &-wrapper {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        position: absolute;
+        top: 70px;
+        box-sizing: border-box;
+        z-index: 6;
+      }
+    }
+    &--item {
+      height: 40px;
+      width: 710px;
+      flex: 1 0 40px;
+      background-color: white;
+      border: 1px solid orange;
+      &-last {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+}
+
+.typeahead__input.typeahead__input--not-empty:focus,
+.typeahead__input.typeahead__input--not-empty:focus-visible {
+  border-right: 1px solid $grey-primary;
 }
