@@ -1,9 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Component, AfterViewInit, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Subscribable, Subscription, fromEvent, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 import { BorderRadius } from '../../interfaces/border-radius';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { TypeaheadResponse } from '../../interfaces/typeahead/typeahead-response';
+import { TypeaheadService } from '../../../../services/typeahead.service';
 
 @Component({
   selector: 'cfr-typeahead',
@@ -21,24 +23,41 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
   showClearButton: boolean = false;
   searchInputSub: Subscription | undefined;
   items: number[] = [1, 2, 3, 4, 5, 6];
+  hints: TypeaheadResponse | undefined;
+  typeaheadSub: Subscription | undefined;
 
   constructor(@Inject(DOCUMENT) private document: Document,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private typeaheadService: TypeaheadService) {
     this.searchForm = this.fb.group({'searchInput': ['']});
   }
 
   ngOnInit(): void {
-    this.searchInputSub = this.searchForm.get('searchInput')?.valueChanges.subscribe(
-      userInput => {
+    this.searchInputSub = this.searchForm.get('searchInput')?.valueChanges
+    .pipe(
+      tap(userInput => {
         this.showClearButton = userInput ? true : false;
-        console.log(userInput);
-        
-      }
-    );
+      }),
+      filter(userInput => userInput.length >= 3),
+      debounceTime(400),
+      distinctUntilChanged(),
+      switchMap(userInput => {
+        return this.typeaheadService.getSuggestionsMock$(userInput)
+      }),
+    ).subscribe(hints => {
+        this.hints = hints;
+    });
   }
 
   ngAfterViewInit(): void {
    // this.listenUserInput();
+  }
+
+  ngOnDestroy(): void {
+    this.searchInputSub?.unsubscribe();
+    if (this.typeaheadSub) {
+      this.typeaheadSub.unsubscribe();
+    }
   }
 
   toggleClearButtonIcon(event: MouseEvent): void {

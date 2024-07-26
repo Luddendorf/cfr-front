@@ -25,6 +25,10 @@
         </div>
         <div class="typeahead__suggestion--list-wrapper">
           <div class="typeahead__suggestion--list">
+            <div class="typeahead__suggestion--header-wrapper">
+              <div class="typeahead__suggestion--header">Search history</div>
+              <button class="typeahead__suggestion--header-button">Clear list</button>
+            </div>
             <div *ngFor="let item of items; index as i" class="typeahead__suggestion--item"
               [ngClass]="{'typeahead__suggestion--item-last' : i == items.length-1 }">
               {{ item }}
