@@ -2,15 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TypeaheadResponse } from '../main/shared/interfaces/typeahead/typeahead-response';
 import { environment } from '../../environments/environment';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TypeaheadRequest } from '../main/shared/interfaces/typeahead/typeahead-request';
+import { HistoryResponse } from '../main/shared/interfaces/typeahead/history-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TypeaheadService {
+  historyList$: BehaviorSubject<HistoryResponse[]> = new BehaviorSubject([{
+    historyName: 'historyName', historyLink: 'www.google.com'}]);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getHistoryItemsMock$('AdminsBestFriend').subscribe(historyList => {
+      this.historyList$.next(historyList);
+    });
+  }
 
   getSuggestions$(userSearchString: string): Observable<TypeaheadResponse> {
     let userCategory: string = 'adult male 30 years old';
@@ -47,5 +54,21 @@ export class TypeaheadService {
           id: '55555', topId: '55555'}
       ]
     });
+  }
+
+  getHistoryItems$(userLogin: string): Observable<HistoryResponse[]> {
+    return this.http.post<HistoryResponse[]>(`${environment.baseUrl}/history`,
+      { userLogin: userLogin });
+  }
+
+  getHistoryItemsMock$(userLogin: string): Observable<HistoryResponse[]> {
+    return of([{historyName: 'Samsung', historyLink: 'www.google.com'}, 
+      {historyName: 'Panasonic', historyLink: 'www.google.com'},
+      {historyName: 'Toshiba', historyLink: 'www.google.com'},
+      {historyName: 'Canon', historyLink: 'www.google.com'}]);
+  }
+
+  getHistory$(): Observable<HistoryResponse[]> {
+    return this.historyList$.asObservable();
   }
 }

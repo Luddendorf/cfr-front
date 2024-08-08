@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -24,4 +24,16 @@ import { AuthInterceptor } from './services/auth.interceptor';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  /* constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const customEl = createCustomElement(AppComponent, {
+      injector: this.injector
+    });
+    if (!window.customElements.get('my-app')) {
+      window.customElements.define('my-app', customEl);
+    }
+  } */
+  // build scenario: .github/main.yml
+}

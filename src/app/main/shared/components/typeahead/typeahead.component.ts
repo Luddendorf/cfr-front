@@ -6,6 +6,7 @@ import { BorderRadius } from '../../interfaces/border-radius';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { TypeaheadResponse } from '../../interfaces/typeahead/typeahead-response';
 import { TypeaheadService } from '../../../../services/typeahead.service';
+import { HistoryResponse } from '../../interfaces/typeahead/history-response';
 
 @Component({
   selector: 'cfr-typeahead',
@@ -21,10 +22,13 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
   voiceButtonClass: string = 'typeahead__voice--icon';
   searchForm: FormGroup<any>;
   showClearButton: boolean = false;
+  showSuggestions: boolean = false;
   searchInputSub: Subscription | undefined;
+  historyList: HistoryResponse[] = [];
   items: number[] = [1, 2, 3, 4, 5, 6];
   hints: TypeaheadResponse | undefined;
   typeaheadSub: Subscription | undefined;
+  historySub: Subscription | undefined;
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private fb: FormBuilder,
@@ -33,6 +37,12 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.historySub = this.typeaheadService.getHistory$()
+    .subscribe(historyList => {
+      this.historyList = historyList;
+      console.log('this.historyList', this.historyList);
+    });
+
     this.searchInputSub = this.searchForm.get('searchInput')?.valueChanges
     .pipe(
       tap(userInput => {
@@ -57,6 +67,9 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
     this.searchInputSub?.unsubscribe();
     if (this.typeaheadSub) {
       this.typeaheadSub.unsubscribe();
+    }
+    if (this.historySub) {
+      this.historySub.unsubscribe();
     }
   }
 
@@ -96,6 +109,10 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
 
   clearSearch(): void {
     this.searchForm.get('searchInput')?.setValue('');
+  }
+
+  toggleSuggestions(): void {
+    this.showSuggestions = !this.showSuggestions;
   }
 /*
   listenUserInput(): void {

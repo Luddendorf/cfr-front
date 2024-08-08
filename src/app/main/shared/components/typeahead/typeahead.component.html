@@ -1,8 +1,10 @@
 <div class="typeahead__container">
   <form action="" class="typeahead__form" [formGroup]="searchForm">
     <div class="typeahead__main">
-        <div class="typeahead__search-block">
-          <button class="typeahead__search">
+        <div class="typeahead__search-block"
+          [ngClass]="{ 'typeahead__search-block--opened' : showSuggestions === true }">
+          <button class="typeahead__search"
+            [ngClass]="{ 'typeahead__search-block--opened' : showSuggestions === true }">
             <span class="typeahead__search--icon"></span>
           </button>
           <input type="text" class="typeahead__input" [placeholder]="inputPlaceholder"
@@ -23,15 +25,36 @@
           <cfr-button [buttonText]="searchButtonText" [height]="'40px'"
           [fontSize]="'16px'" [borderRadius]="buttonBorderRadius" [width]="'63px'"></cfr-button>
         </div>
-        <div class="typeahead__suggestion--list-wrapper">
-          <div class="typeahead__suggestion--list">
-            <div class="typeahead__suggestion--header-wrapper">
-              <div class="typeahead__suggestion--header">Search history</div>
-              <button class="typeahead__suggestion--header-button">Clear list</button>
-            </div>
-            <div *ngFor="let item of items; index as i" class="typeahead__suggestion--item"
-              [ngClass]="{'typeahead__suggestion--item-last' : i == items.length-1 }">
-              {{ item }}
+        <div class="typeahead__suggestion--list-wrapper"
+          [ngClass]="{ 'typeahead__suggestion--show' : showSuggestions === true }"
+          (clickOutside)="toggleSuggestions()">
+          <div class="typeahead__suggestion--list-animated">
+            <div class="typeahead__suggestion--list">
+              <div class="typeahead__suggestion--header-wrapper">
+                <div class="typeahead__suggestion--header">Search history</div>
+                <button class="typeahead__suggestion--header-button">Clear list</button>
+              </div>
+              <div *ngFor="let historyRecord of historyList; index as i"        class="typeahead__history--item"
+                [ngClass]="{'typeahead__history--item-last' : i == historyList.length-1 }">
+                <a [href]=historyRecord.historyLink class="typeahead__history--link">
+                  <span class="typeahead__history--link-left">
+                    <div class="typeahead__history--icon"></div>
+                    <span class="typeahead__history--legend">
+                      {{ historyRecord.historyName }}</span>
+                  </span>
+                  
+                  <button class="typeahead__history--button">
+                    <span class="typeahead__history--button-icon"></span>
+                  </button>
+                </a>
+                
+              </div>
+
+              <!--
+              <div *ngFor="let item of items; index as i" class="typeahead__suggestion--item"
+                [ngClass]="{'typeahead__suggestion--item-last' : i == items.length-1 }">
+                {{ item }}
+              </div> -->
             </div>
           </div>
           <!-- <div class="typeahead__suggestion--item"></div> -->

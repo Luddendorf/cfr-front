@@ -4,7 +4,9 @@ $grey-disabled: #cccccc;
 $grey-medium: #545353;
 $grey-primary: #a6a5a5;
 $grey-secondary: #797878;
+$grey-selected: #f6f6f6;
 $pink-primary: #ff7878;
+$red-primary: #f84147;
 
 @mixin typeahead-button {
   display: flex;
@@ -47,7 +49,9 @@ $pink-primary: #ff7878;
   &__search {
     &-block {
       display: flex;
-      // width: 100%;
+      &--opened {
+        border-bottom-left-radius: 0px;
+      }
     }
     @include typeahead-button;
     min-width: 40px;
@@ -140,25 +144,17 @@ $pink-primary: #ff7878;
       flex-direction: column;
       
       &-wrapper {
-        display: flex;
-        flex-direction: column;
+        display: none;
         height: auto;
         position: absolute;
         top: 70px;
         box-sizing: border-box;
         z-index: 6;
       }
-    }
-    &--item {
-      height: 40px;
-      width: 711px;
-      flex: 1 0 40px;
-      box-sizing: border-box;
-      background-color: white;
-      border: 1px solid orange;
-      &-last {
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
+      &-animated {
+        display: flex;
+        flex-direction: column;
+        animation: 0.3s ease-in 0.0s slideIn;
       }
     }
     &--header {
@@ -190,10 +186,95 @@ $pink-primary: #ff7878;
         }
       }
     }
+    &--show {
+      display: block;
+    }
+  }
+  &__history {
+    &--icon {
+      width: 24px;
+      height: 24px;
+      background-image: url('../../../../../assets/img/search-gray.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: 2px 16px 0 0;
+    }
+    &--legend {
+      color: $black-text;
+      font-size: 14px;
+
+      &:hover {
+        color: inherit;
+      }
+    }
+    &--link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 32px;
+      color: $black-text;
+      text-decoration: none;
+      &:hover,
+      &:active {
+        color: $red-primary;
+        background-color: $grey-selected;
+        transition: all 0.4s;
+      }
+      &-left {
+        display: flex;
+        align-items: center;
+      }
+    }
+    &--item {
+      height: 32px;
+      width: 711px;
+      flex: 1 0 32px;
+      box-sizing: border-box;
+      background-color: white;
+      padding: 0 16px;
+      &:hover {
+        color: $red-primary;
+        background-color: $grey-selected;
+        transition: all 0.4s;
+      }
+      &-last {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+    &--button {
+      width: 32px;
+      height: 32px;
+      box-sizing: border-box;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      &-icon {
+        width: 12px;
+        height: 12px;
+        background-image: url('../../../../../assets/img/cross-grey.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    }
   }
 }
 
 .typeahead__input.typeahead__input--not-empty:focus,
 .typeahead__input.typeahead__input--not-empty:focus-visible {
   border-right: 1px solid $grey-primary;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translate(0%, -15%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
 }

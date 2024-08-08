@@ -14,12 +14,14 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { ButtonSocialComponent } from './components/button-social/button-social.component';
 import { TypeaheadComponent } from './components/typeahead/typeahead.component';
 import { BallComponent } from './components/ball/ball.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
     ButtonComponent,
     ButtonSocialComponent,
     CardComponent,
+    ClickOutsideDirective,
     HoverDirective,
     InputComponent,
     LinkComponent,
@@ -39,6 +41,7 @@ import { BallComponent } from './components/ball/ball.component';
     ButtonComponent,
     ButtonSocialComponent,
     CardComponent,
+    ClickOutsideDirective,
     HoverDirective,
     InputComponent,
     LinkComponent,

@@ -1,0 +1,29 @@
+name: my-job-name
+
+on:
+  push:
+    branches:
+     - 'main'
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  ci:
+    name: CI
+    uses: path-to-another-yml-config-file/another-config.yml@some-other-branch
+    if: ${{ github.event_name == 'push' || github.event_name == 'pull_request' }}
+    with:
+      tool: node
+      version: 16.13.2
+      language: javascript
+      build-command: npm install --force; node_modules/.bin/ng build --deploy-url /v1/assets?path=/my-app-name/path-to-my-resource-files --configuration development && mkdir build; cat dist/my-app-name/runtime.js dist/my-app-name/main.js > build/my-final-name.js;
+      artifact: build
+
+  deploy-my-app:
+    if ${{ github.event_name == 'push'}}
+    needs: ["ci"]
+    name: bla-bla
+    uses: path-to-another-yml-config-file/another-config.yml@some-other-branch
+    with:
+      env: dev  

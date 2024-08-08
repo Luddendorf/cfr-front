@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { InputConfig } from '../../shared/interfaces/input-config';
 
 @Component({
   selector: 'cfr-topbar',
