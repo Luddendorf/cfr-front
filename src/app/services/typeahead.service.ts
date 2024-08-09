@@ -33,25 +33,25 @@ export class TypeaheadService {
 
   getSuggestionsMock$(userSearchString: string): Observable<TypeaheadResponse> {
     return of({
-      count: 10,
+      count: 13,
       hintSimple: [
-        {name: 'fanta orange', href: 'www.google.com'},
-        {name: 'fanta mandarin', href: 'www.google.com'},
-        {name: 'fanta shokata', href: 'www.google.com'},
-        {name: 'fanta lime', href: 'www.google.com'},
-        {name: 'fanta peach', href: 'www.google.com'}
+        {name: 'orange', href: 'www.google.com'},
+        {name: 'mandarin', href: 'www.google.com'},
+        {name: 'shokata', href: 'www.google.com'},
+        {name: 'lime', href: 'www.google.com'},
+        {name: 'peach', href: 'www.google.com'}
+      ],
+      hintCategory: [
+        {name: 'Beverages', href: 'www.google.com'},
+        {name: 'Bicycles', href: 'www.google.com'},
+        {name: 'Computers', href: 'www.google.com'}
       ],
       hintInCategory: [
-        {title: 'Beverages', name: 'fanta in category Beverages', href: 'www.google.com',
-          id: '11111', topId: '11111'},
-        {title: 'Bicycles', name: 'fanta in category Bicycles', href: 'www.google.com',
-          id: '22222', topId: '22222'},
-        {title: 'Computers', name: 'fanta in category Computers', href: 'www.google.com',
-          id: '33333', topId: '33333'},
-        {title: 'Sport', name: 'fanta in category Sport', href: 'www.google.com',
-          id: '44444', topId: '44444'},
-        {title: 'Entertainment', name: 'fanta in category Entertainment', href: 'www.google.com',
-          id: '55555', topId: '55555'}
+        { word: 'fanta', intermediatePhrase: 'in category', title: 'Beverages', href: 'www.google.com', id: '11111', topId: '11111'},
+        { word: 'fanta', intermediatePhrase: 'in category', title: 'Bicycles', href: 'www.google.com', id: '22222', topId: '22222'},
+        { word: 'fanta', intermediatePhrase: 'in category', title: 'Computers', href: 'www.google.com', id: '33333', topId: '33333'},
+        { word: 'fanta', intermediatePhrase: 'in category', title: 'Entertainment', href: 'www.google.com', id: '44444', topId: '44444'},
+        { word: 'fanta', intermediatePhrase: 'in category', title: 'Sport', href: 'www.google.com', id: '55555', topId: '55555'}
       ]
     });
   }
@@ -70,5 +70,14 @@ export class TypeaheadService {
 
   getHistory$(): Observable<HistoryResponse[]> {
     return this.historyList$.asObservable();
+  }
+
+  removeFromHistory$(recordsToRemove: string[]): Observable<string> {
+    return this.http.post<string>(`${environment.baseUrl}/history/remove`,
+      { recordsToRemove: recordsToRemove });
+  }
+
+  removeFromHistoryMock$(recordsToRemove: string[]): Observable<string> {
+    return of('Successfully removed.');
   }
 }

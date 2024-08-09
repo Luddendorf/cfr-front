@@ -1,6 +1,7 @@
 export interface HintInCategory {
+  word: string;
+  intermediatePhrase: string;
   title: string;
-  name: string;
   href: string;
   id: string;
   topId: string;

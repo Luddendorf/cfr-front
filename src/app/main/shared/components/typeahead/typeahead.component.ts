@@ -17,6 +17,7 @@ import { HistoryResponse } from '../../interfaces/typeahead/history-response';
 export class TypeaheadComponent implements OnInit, AfterViewInit {
   inputPlaceholder: string = 'I search...';
   searchButtonText: string = 'Find';
+  userInput: string = '';
   buttonBorderRadius: BorderRadius = BorderRadius.Right;
   clearButtonClass: string = 'typeahead__clear--icon';
   voiceButtonClass: string = 'typeahead__voice--icon';
@@ -40,22 +41,28 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
     this.historySub = this.typeaheadService.getHistory$()
     .subscribe(historyList => {
       this.historyList = historyList;
-      console.log('this.historyList', this.historyList);
     });
 
     this.searchInputSub = this.searchForm.get('searchInput')?.valueChanges
     .pipe(
       tap(userInput => {
+        if (!userInput) {
+          this.showSuggestions = false;
+          this.hints = undefined;
+        }
+        this.userInput = userInput;
         this.showClearButton = userInput ? true : false;
       }),
-      filter(userInput => userInput.length >= 3),
+      filter(userInput => userInput.length >= 2),
       debounceTime(400),
       distinctUntilChanged(),
       switchMap(userInput => {
+        this.userInput = userInput;
         return this.typeaheadService.getSuggestionsMock$(userInput)
       }),
     ).subscribe(hints => {
         this.hints = hints;
+        this.showSuggestions = true;
     });
   }
 
@@ -83,22 +90,6 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
       ? 'typeahead__voice--icon-hovered' : 'typeahead__voice--icon';
   }
 
-  getContinents = (keys: string) =>
-  [
-    'africa',
-    'antarctica',
-    'asia',
-    'australia',
-    'europe',
-    'north america',
-    'south america'
-  ].filter(e => e.indexOf(keys.toLowerCase()) > -1);
-
-  fakeContinentsRequest = (keys: string) =>
-    of(this.getContinents(keys)).pipe(
-      tap(_ => console.log(`API CALL at ${new Date()}`))
-  );
-
   onSearchInputFocus(): void {
 
   }
@@ -114,7 +105,20 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
   toggleSuggestions(): void {
     this.showSuggestions = !this.showSuggestions;
   }
-/*
+
+  removeHistoryRecord(recordIndex: number, event: MouseEvent): void {
+    event.stopPropagation();
+    event.preventDefault();
+    this.historyList.splice(recordIndex, 1);
+  }
+
+  removeAllHistory(): void {
+    this.historyList = [];
+  }
+  
+
+
+  /*
   listenUserInput(): void {
     const intputEl: any = this.document.getElementById('type-ahead');
     const outputEl: any = this.document.getElementById('output');

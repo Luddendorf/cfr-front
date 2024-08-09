@@ -30,25 +30,65 @@
           (clickOutside)="toggleSuggestions()">
           <div class="typeahead__suggestion--list-animated">
             <div class="typeahead__suggestion--list">
-              <div class="typeahead__suggestion--header-wrapper">
-                <div class="typeahead__suggestion--header">Search history</div>
-                <button class="typeahead__suggestion--header-button">Clear list</button>
-              </div>
-              <div *ngFor="let historyRecord of historyList; index as i"        class="typeahead__history--item"
+              <ng-container *ngIf="!hints">
+                <div class="typeahead__suggestion--header-wrapper">
+                  <div class="typeahead__suggestion--header">Search history</div>
+                  <button class="typeahead__suggestion--header-button"
+                    (click)="removeAllHistory()">Clear list</button>
+                </div>
+                <div *ngFor="let historyRecord of historyList; index as i"        class="typeahead__history--item"
                 [ngClass]="{'typeahead__history--item-last' : i == historyList.length-1 }">
-                <a [href]=historyRecord.historyLink class="typeahead__history--link">
-                  <span class="typeahead__history--link-left">
-                    <div class="typeahead__history--icon"></div>
-                    <span class="typeahead__history--legend">
-                      {{ historyRecord.historyName }}</span>
-                  </span>
-                  
-                  <button class="typeahead__history--button">
-                    <span class="typeahead__history--button-icon"></span>
-                  </button>
-                </a>
-                
+                  <a [href]=historyRecord.historyLink class="typeahead__history--link">
+                    <span class="typeahead__history--link-left">
+                      <div class="typeahead__history--icon"></div>
+                      <span class="typeahead__history--legend">
+                        {{ historyRecord.historyName }}</span>
+                    </span>
+                    
+                    <button class="typeahead__history--button"
+                      (click)="removeHistoryRecord(i, $event)">
+                      <span class="typeahead__history--button-icon"></span>
+                    </button>
+                  </a>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="hints">
+                <div class="typeahead__hint--holder">
+                <ng-container *ngIf="hints.hintSimple && hints.hintSimple.length > 0">
+                  <div *ngFor="let hint of hints.hintSimple; index as i"    class="typeahead__hint--item">
+                    <a class="typeahead__hint--text" [href]="hint.href">
+                      <span class="typeahead__hint--wide">
+                        <span class="typeahead__hint--input">{{ userInput }}&nbsp;</span>
+                        <span class="typeahead__hint--addition">{{ hint.name }}</span>
+                      </span>
+                    </a>
+                  </div>
+                </ng-container>
+                <!-- search amoung categories -->
+                <ng-container *ngIf="hints.hintCategory && hints.hintCategory.length > 0">
+                  <div class="typeahead__hint--subheader">Go to category</div>
+                  <div *ngFor="let hintCategory of hints.hintCategory; index as i"    class="typeahead__hint--item">
+                    <a class="typeahead__hint--text" [href]="hintCategory.href">
+                      <div class="typeahead__hint--category-icon"></div>
+                      <span class="typeahead__hint--input">{{ hintCategory.name }}</span>
+                    </a>
+                  </div>
+                </ng-container>
+                <!-- search in category -->
+                <ng-container *ngIf="hints.hintInCategory && hints.hintInCategory.length > 0">
+                  <div class="typeahead__hint--subheader-in-category">Search in category</div>
+                  <div *ngFor="let hintInCategory of hints.hintInCategory; index as i"    class="typeahead__hint--item-in-category">
+                    <a class="typeahead__hint--text" [href]="hintInCategory.href">
+                      <div class="typeahead__hint--in-category-icon"></div>
+                      <span class="typeahead__hint--input">{{ hintInCategory.word }}&nbsp;</span>
+                      <span class="typeahead__hint--addition">{{ hintInCategory.intermediatePhrase }}&nbsp;</span>
+                      <span class="typeahead__hint--category-name">{{ hintInCategory.title }}</span>
+                    </a>
+                  </div>
+                </ng-container>
+
               </div>
+              </ng-container>
 
               <!--
               <div *ngFor="let item of items; index as i" class="typeahead__suggestion--item"
