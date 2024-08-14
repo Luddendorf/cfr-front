@@ -4,6 +4,7 @@ import { Language } from './language';
 export interface FilterGood {
   country: Country;
   lang: Language;
-  ids: number[];
+  ids?: number[];
   showInSite?: number;
+  searchWords?: string[];
 }

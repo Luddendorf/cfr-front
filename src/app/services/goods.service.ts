@@ -2,14 +2,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FilterGood } from '../main/shared/interfaces/good/filter-good';
 import { Good } from '../main/shared/interfaces/good/good';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GoodsService {
-
+  searchPhrase$: BehaviorSubject<string> = new BehaviorSubject('');
   constructor(private http: HttpClient) {}
 
   getGoods(filterGood: FilterGood): Observable<Good[]> {
@@ -22,6 +22,8 @@ export class GoodsService {
     return this.http.get<Good[]>(`${environment.baseUrl}/goods`,
       {params: params});
   }
+
+
 
   private addParam(params: HttpParams, paramName: string, filter: any): void {
     if (Object.keys(filter).includes(paramName)) {

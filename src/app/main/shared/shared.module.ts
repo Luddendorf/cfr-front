@@ -15,6 +15,7 @@ import { ButtonSocialComponent } from './components/button-social/button-social.
 import { TypeaheadComponent } from './components/typeahead/typeahead.component';
 import { BallComponent } from './components/ball/ball.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { CatalogueComponent } from './components/catalogue/catalogue.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     UkrCurrencyPipe,
     CheckboxComponent,
     TypeaheadComponent,
-    BallComponent
+    BallComponent,
+    CatalogueComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     SignUpComponent,
     TypeaheadComponent,
     UkrCurrencyPipe,
-    BallComponent
+    BallComponent,
+    CatalogueComponent
   ]
 })
 export class SharedModule { }

@@ -24,6 +24,5 @@ export class ModalComponent {
       || target.classList.contains('modal__main')) {
       this.isShown = false;
     }
-    
   }
 }

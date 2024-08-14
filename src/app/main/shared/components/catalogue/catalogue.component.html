@@ -1,0 +1,15 @@
+<div class="catalogue__container">
+  <div class="catalogue__trigger" (click)="openCatalogue()">
+    <ng-content select=".catalogue-trigger"></ng-content>
+  </div>
+  <div class="catalogue__main"
+    [ngClass]="{'catalogue__hide' : catalogueIsShown == false }"
+       (click)="closeCatalogue($event)">
+    <div class="catalogue__holder">
+        <h1>You will see Your catalogue later.</h1>
+        <button (click)="closeCatalogue($event)"
+          class="catalogue__close">X</button>
+    </div>
+    <!-- <ng-content select=".modal-window"></ng-content> -->
+  </div>
+</div>

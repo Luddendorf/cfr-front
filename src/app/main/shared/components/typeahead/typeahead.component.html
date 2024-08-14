@@ -9,25 +9,27 @@
           </button>
           <input type="text" class="typeahead__input" [placeholder]="inputPlaceholder"
             (focus)="onSearchInputFocus()" (blur)="onSearchInputBlur()"
-            formControlName="searchInput"
-            [ngClass]="{ 'typeahead__input--not-empty' : showClearButton }"/>
+            formControlName="searchInput"/>
           <button *ngIf="showClearButton"
             class="typeahead__clear" (mouseover)="toggleClearButtonIcon($event)"
             (mouseout)="toggleClearButtonIcon($event)"
             (click)="clearSearch()">
             <span [ngClass]="clearButtonClass"></span>
           </button>
-          <span class="typeahead__divider"></span>
+          <span class="typeahead__divider">
+            <div class="typeahead__divider--inner"></div>
+          </span>
           <button class="typeahead__voice" (mouseover)="toggleVoiceButtonIcon($event)"
             (mouseout)="toggleVoiceButtonIcon($event)">
             <span [ngClass]="voiceButtonClass"></span>
           </button>
           <cfr-button [buttonText]="searchButtonText" [height]="'40px'"
-          [fontSize]="'16px'" [borderRadius]="buttonBorderRadius" [width]="'63px'"></cfr-button>
+            [fontSize]="'16px'" [borderRadius]="buttonBorderRadius" [width]="'63px'"
+            (click)="startSearch()"></cfr-button>
         </div>
         <div class="typeahead__suggestion--list-wrapper"
           [ngClass]="{ 'typeahead__suggestion--show' : showSuggestions === true }"
-          (clickOutside)="toggleSuggestions()">
+          (clickOutside)="hideSuggestions()">
           <div class="typeahead__suggestion--list-animated">
             <div class="typeahead__suggestion--list">
               <ng-container *ngIf="!hints">
@@ -103,7 +105,8 @@
     
     <!-- <button></button> -->
   </form>
-  <div class="typeahead__suggestion"></div>
+  <div class="typeahead__suggestion"
+      [ngClass]="{ 'typeahead__suggestion--show' : showSuggestions === true }"></div>
 
   <!-- <input id="type-ahead" />
   <hr />

@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Component, AfterViewInit, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { Subscribable, Subscription, fromEvent, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, switchMap, tap } from 'rxjs/operators';
 import { BorderRadius } from '../../interfaces/border-radius';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { TypeaheadResponse } from '../../interfaces/typeahead/typeahead-response';
 import { TypeaheadService } from '../../../../services/typeahead.service';
 import { HistoryResponse } from '../../interfaces/typeahead/history-response';
+import { GoodsService } from '../../../../services/goods.service';
 
 @Component({
   selector: 'cfr-typeahead',
@@ -33,7 +34,8 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private fb: FormBuilder,
-              private typeaheadService: TypeaheadService) {
+              private typeaheadService: TypeaheadService,
+              private goodsService: GoodsService) {
     this.searchForm = this.fb.group({'searchInput': ['']});
   }
 
@@ -67,7 +69,6 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-   // this.listenUserInput();
   }
 
   ngOnDestroy(): void {
@@ -91,19 +92,19 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
   }
 
   onSearchInputFocus(): void {
-
+    this.showSuggestions = true;
   }
 
   onSearchInputBlur(): void {
-
+    this.showSuggestions = false;
   }
 
   clearSearch(): void {
     this.searchForm.get('searchInput')?.setValue('');
   }
 
-  toggleSuggestions(): void {
-    this.showSuggestions = !this.showSuggestions;
+  hideSuggestions(): void {
+    this.showSuggestions = false;
   }
 
   removeHistoryRecord(recordIndex: number, event: MouseEvent): void {
@@ -116,22 +117,10 @@ export class TypeaheadComponent implements OnInit, AfterViewInit {
     this.historyList = [];
   }
   
-
-
-  /*
-  listenUserInput(): void {
-    const intputEl: any = this.document.getElementById('type-ahead');
-    const outputEl: any = this.document.getElementById('output');
-
-    const events = fromEvent(intputEl, 'keyup').pipe(
-      debounceTime(400),
-      map((e: any) => e.target.value),
-      distinctUntilChanged(),
-      switchMap(this.fakeContinentsRequest),
-      tap(c => (outputEl.innerText = c.join('\n')))
-    )
-    .subscribe(event => {
-      console.log('Got event ' + event);
-    });
-  } */
+  startSearch(): void {
+    if (!this.userInput) {
+      return;
+    }
+    this.goodsService.searchPhrase$.next(this.userInput);
+  }
 }
